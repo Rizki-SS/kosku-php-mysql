@@ -2,7 +2,7 @@
 $dir = $_SERVER['DOCUMENT_ROOT'];
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+<nav class="navbar navbar-expand-lg navbar-light bg-warning fixed-top">
   <div class="container">
     <a class="navbar-brand" href="#">Kosku</a>
     <!-- navbar toggler -->

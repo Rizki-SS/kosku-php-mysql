@@ -4,6 +4,7 @@
       #header {
         height: 500px;
         background-image: url("assets/head-bg.jpg");
+        background-attachment: fixed;
         background-size: cover;
         padding-top: 200px;
       }
@@ -39,8 +40,8 @@
     include("templates/navbar.php")
     ?>
 
-    <div class="container" id="header">
-      <div style="padding-left: 100px; padding-right: 100px;">
+    <div class="container-fluid" id="header">
+      <div class="offset-2 col-8">
         <h1 class="display-4 text-light text-center">
           Manajemen Kos Dalam 1 Aplikasi
         </h1>
@@ -82,7 +83,10 @@
           </p>
         </div>
         <div class="col-lg">
-          <img src="assets/undraw_file_manager_j85s.svg" class="img-benefit" />
+          <img
+            src="assets/undraw_data_report_bi6l.svg"
+            class="img-benefit float-right"
+          />
         </div>
       </div>
     </div>
