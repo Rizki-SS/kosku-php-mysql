@@ -11,6 +11,8 @@ $res = mysqli_query($conn, $createTable);
 
 if (mysqli_error($conn) != NULL) {
   echo "Error : " . mysqli_error($conn);
+}else{ 
+  echo "Success Create Table User";
 }
 
 ?>
