@@ -20,7 +20,7 @@
             <div class="card-body">
               <h5 class="card-title">Login</h5>
               <br />
-              <form action="/ver.php" class="form-group" method="POST">
+              <form action="login.php" class="form-group" method="POST">
                 <input
                   type="email"
                   name="email"
@@ -28,7 +28,7 @@
                 /><br />
                 <input type="password" name="password" class="form-control" />
                 <br />
-                <input type="submit" value="submit" class="btn btn-dark" />
+                <input type="submit" name="submit" value="submit" class="btn btn-dark" />
               </form>
             </div>
           </div>
@@ -37,3 +37,24 @@
     </div>
   </body>
 </html>
+<?php 
+if(isset($_POST["submit"])){
+  $dir = $_SERVER['DOCUMENT_ROOT'];
+  include($dir.'/conn.php');
+
+  $email = $_POST["email"];
+  $password = $_POST["password"];
+  // echo $email;
+  $query = 'SELECT * FROM user WHERE email="'.$email.'";';
+  $res = mysqli_query($conn, $query);
+  $data = mysqli_fetch_assoc($res);
+
+  if ($data["email"] == $email) {
+    if (password_verify($password, $data["password"])) {
+      session_start();
+      $_SESSION["user"] = $data;
+      header("location: /welcome.php");
+    }
+  }
+}
+?>
