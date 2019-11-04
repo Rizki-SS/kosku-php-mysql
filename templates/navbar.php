@@ -19,7 +19,11 @@ $dir = $_SERVER['DOCUMENT_ROOT'];
     </button>
 
     <!-- navbar -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <?php 
+    session_start();
+    if (isset($_SESSION["user"])) {
+    ?>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- kiri -->
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -49,9 +53,31 @@ $dir = $_SERVER['DOCUMENT_ROOT'];
           <a class="dropdown-item" href="#">Profile</a>
           <a class="dropdown-item" href="#">Settings</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Logout</a>
+          <a class="dropdown-item" href="/logout.php">Logout</a>
         </div>
       </div>
     </div>
+  <?php 
+  }else{
+  ?>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- kiri -->
+      <ul class="navbar-nav mr-auto">
+      </ul>
+
+      <!-- kanan -->
+      <div>
+      <a href="/daftar.php" class="btn btn-outline-dark">
+        Daftar
+      </a>
+      <a href="/login.php" class="btn btn-dark">
+        Login
+      </a>
+      </div>
+
+    </div>
+  <?php }
+  session_abort();
+  ?>
   </div>
 </nav>
