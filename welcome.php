@@ -45,6 +45,11 @@
         background-attachment: fixed;
         background-size: cover;
       }
+
+      .card.fitur {
+        height: 450px;
+        margin-bottom: 25px;
+      }
     </style>
     <?php 
     include("templates/resources.php")
@@ -111,43 +116,45 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-4 col-sm">
-            <div class="card">
+            <div class="card fitur">
               <div class="circle">
                 <div class="number">1</div>
               </div>
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Manajemen Data Anak Kos</h5>
                 <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  Dengan aplikasi ini, kamu bisa dengan cepat melihat, mengubah
+                  dan menghapus data pengguna kosmu sehingga tak perlu repot
+                  lagi membawa buku tabalmu
                 </p>
               </div>
             </div>
           </div>
           <div class="col-lg-4">
-            <div class="card">
+            <div class="card fitur">
               <div class="circle">
                 <div class="number">2</div>
               </div>
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Manajemen Pembayaran Anak Kos</h5>
                 <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  Dengan aplikasi ini, kamu dapat dengan mudah mengetahui,
+                  mencatat, dan mengubah data pembayaran pengguna kosmu.
                 </p>
               </div>
             </div>
           </div>
           <div class="col-lg-4">
-            <div class="card">
+            <div class="card fitur">
               <div class="circle">
                 <div class="number">3</div>
               </div>
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Pantau Penghasilanmu</h5>
                 <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  Dengan aplikasi ini, kamu dapat dengan mudah mengetahui data
+                  pemasukan yang kamu dapat dengan usaha kosmu. Tidak perlu
+                  repot, hanya sekali klik.
                 </p>
               </div>
             </div>
