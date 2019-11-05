@@ -1,5 +1,6 @@
 <html>
   <head>
+    <title>Kosku - Welcome Page</title>
     <style>
       #header {
         height: 500px;

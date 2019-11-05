@@ -1,7 +1,7 @@
 <?php 
 if(isset($_POST["submit"])){
   $dir = $_SERVER['DOCUMENT_ROOT'];
-  include($dir.'/conn.php');
+  include($dir.'/config/conn.php');
 
   $email = $_POST["email"];
   $password = $_POST["password"];
