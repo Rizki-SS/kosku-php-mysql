@@ -21,7 +21,7 @@ $dir = $_SERVER['DOCUMENT_ROOT'];
     <!-- navbar -->
     <?php 
     session_start();
-    if (isset($_SESSION["user"])) {
+    if (isset($_SESSION["admin"])) {
     ?>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- kiri -->

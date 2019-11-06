@@ -10,16 +10,17 @@ if(isset($_POST["submit"])){
   $res = mysqli_query($conn, $query);
   $data = mysqli_fetch_assoc($res);
 
-  session_start();
+
   if ($data["email"] == $email) {
     if (password_verify($password, $data["password"])) {
-      $_SESSION["user"] = $data;
-      header("location: /welcome.php");
+      session_start();
+      $_SESSION["admin"] = $data;
+      header("location: /admin/home.php");
     }else{
-      header("location: /login.php?error=password_salah");
+      header("location: /login.php?error=2");
     }
   }else{
-    header("location: /login.php?error=username_salah");
+    header("location: /login.php?error=1");
   }
 }
 ?>

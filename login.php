@@ -4,15 +4,18 @@
     <?php 
     $dir = $_SERVER['DOCUMENT_ROOT'];
     include ($dir."/templates/resources.php");
-    $msg = "";
+    
     if (isset($_GET["error"])) {
-      $msg = $_GET["error"];
+      $error = $_GET["error"];
+    }else{
+      $error = "";
     }
 
-    if ($msg = "username_salah") {
-      $msg = "Username Salah";
-    }else if ($msg = "password_salah") {
-      $msg = "Password Salah";
+    $pesan = "";
+    if ($error == 1) {
+      $pesan = "Username Invalid";
+    }else if ($error == 2) {
+      $pesan = "Password Invalid";
     }
     ?>
     <style>
@@ -30,11 +33,11 @@
             <div class="card-body">
               <h4 class="card-title">Login</h4>
               <br />
-              <?php 
-                if (!empty($msg)) {
+                <?php 
+                if (!empty($pesan)) {
                 ?>
-              <div class="alert alert-danger alert-dismissible fade show">
-                <?= $msg ?>
+              <div class="alert alert-danger alert alert-danger alert-dismissible fade show">
+                <?= $pesan ?>
                 <button
                   type="button"
                   class="close"

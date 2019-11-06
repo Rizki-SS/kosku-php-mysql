@@ -50,7 +50,7 @@
                 <input
                   type="submit"
                   name="daftar"
-                  value="daftar"
+                  value="Daftar"
                   class="btn btn-dark"
                 />
               </form>
