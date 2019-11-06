@@ -16,12 +16,10 @@ if(isset($_POST["submit"])){
       $_SESSION["user"] = $data;
       header("location: /welcome.php");
     }else{
-      $_SESSION["error"] = "Password Salah";
-      header("location: /login.php");
+      header("location: /login.php?error=password_salah");
     }
   }else{
-    $_SESSION["error"] = "Username Salah";
-    header("location: /login.php");
+    header("location: /login.php?error=username_salah");
   }
 }
 ?>

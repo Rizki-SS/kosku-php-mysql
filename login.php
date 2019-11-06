@@ -1,14 +1,19 @@
 <html>
   <head>
+    <title>Kosku - Login</title>
     <?php 
     $dir = $_SERVER['DOCUMENT_ROOT'];
     include ($dir."/templates/resources.php");
     $msg = "";
-    session_start();
-    if (isset($_SESSION["error"])) {
-      $msg = $_SESSION["error"];
+    if (isset($_GET["error"])) {
+      $msg = $_GET["error"];
     }
-    session_abort();
+
+    if ($msg = "username_salah") {
+      $msg = "Username Salah";
+    }else if ($msg = "password_salah") {
+      $msg = "Password Salah";
+    }
     ?>
     <style>
       #login {
@@ -26,7 +31,7 @@
               <h4 class="card-title">Login</h4>
               <br />
               <?php 
-                if (isset($_SESSION["error"])) {
+                if (!empty($msg)) {
                 ?>
               <div class="alert alert-danger alert-dismissible fade show">
                 <?= $msg ?>
