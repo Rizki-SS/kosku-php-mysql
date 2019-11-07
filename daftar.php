@@ -15,6 +15,8 @@
     $msg = "Data sudah ada. Silahkan Login.";
   } else if ($error == "2") {
     $msg = "Data Tidak Valid";
+  }else{
+    $msg = $error;
   }
 
   ?>
@@ -75,6 +77,8 @@
         <form action="/daftar.php" class="form-group" method="POST">
           <label for="name">Nama</label>
           <input type="text" name="name" class="form-control" id="name" placeholder="Nama" /><br />
+          <label for="username">Username</label>
+          <input type="text" name="username" class="form-control" id="username" placeholder="Username" /><br />
           <label for="email">Email</label>
           <input type="email" name="email" class="form-control" id="email" placeholder="Email" /><br />
           <label for="password">Password</label>
@@ -94,9 +98,10 @@ if (isset($_POST["daftar"])) {
 
   $name = $_POST["name"];
   $email = $_POST["email"];
+  $username = $_POST["username"];
   $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
-  if (empty($name) || empty($email) || empty($password)) {
+  if (empty($name) || empty($email) || empty($password) || empty($username)) {
     header("location: daftar.php?error=2");
   } else {
     $findEmail = "SELECT * FROM user WHERE email='$email';";
@@ -106,10 +111,11 @@ if (isset($_POST["daftar"])) {
     if (!empty($data)) {
       header("location: daftar.php?error=1");
     } else {
-      $insert = "INSERT INTO user values (NULL, '$name', '$email', '$password', NOW(), NOW());";
+      $insert = "INSERT INTO user values (NULL, '$name','$username', '$email', '$password', NOW(), NOW());";
       $res = mysqli_query($conn, $insert);
       if (mysqli_error($conn)) {
-        echo "Error : " . mysqli_error($conn);
+        $error = mysqli_error($conn);
+        header("location: daftar.php?error=$error");
       } else {
         $findId = "SELECT id FROM user where email='$email'";
         $id = mysqli_fetch_assoc(mysqli_query($conn, $findId));
