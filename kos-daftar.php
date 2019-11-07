@@ -15,6 +15,8 @@
     $msg = "Data sudah ada. Silahkan Login.";
   } else if ($error == "2") {
     $msg = "Data Tidak Valid";
+  } else {
+    $msg = $error;
   }
 
   ?>
@@ -53,12 +55,10 @@
           porro quaerat consequatur nam?
         </p>
         <br /><br />
-        <span>Sudah punya akun?</span><br />
-        <a href="/login.php" class="btn btn-dark">Login</a>
       </div>
       <div class="col-lg-6 login">
 
-        <h2 class="h2" style="font-weight: bold;">Daftar</h2>
+        <h2 class="h2" style="font-weight: bold;">Pendaftaran Kos</h2>
         <br />
         <?php
         if (!empty($msg)) {
@@ -72,13 +72,14 @@
         <?php
         }
         ?>
-        <form action="/daftar.php" class="form-group" method="POST">
-          <label for="name">Nama</label>
-          <input type="text" name="name" class="form-control" id="name" placeholder="Nama" /><br />
-          <label for="email">Email</label>
-          <input type="email" name="email" class="form-control" id="email" placeholder="Email" /><br />
-          <label for="password">Password</label>
-          <input type="password" name="password" class="form-control" id="password" placeholder="Password" />
+        <form action="/kos-daftar.php" class="form-group" method="POST">
+          <label for="nama">Nama Kos</label>
+          <input type="text" name="nama" class="form-control" id="name" placeholder="Nama Kos" /><br />
+          <label for="alamat">Alamat Kos</label>
+          <input type="text" name="alamat" class="form-control" id="alamat" placeholder="Alamat Kos" /><br />
+          <label for="jumlahKamar">Jumlah Kamar</label>
+          <input type="text" name="jumlahkamar" class="form-control" id="jumlahKamar" placeholder="Jumlah Kamar" />
+          <input type="text" name="id" value="<?php echo $_GET['id']; ?>" style="display: none;">
           <br />
           <input type="submit" name="daftar" value="Daftar" class="btn btn-dark" />
         </form>
@@ -92,29 +93,21 @@
 if (isset($_POST["daftar"])) {
   include($dir . "/config/conn.php");
 
-  $name = $_POST["name"];
-  $email = $_POST["email"];
-  $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+  $nama = $_POST["nama"];
+  $alamat = $_POST["alamat"];
+  $jumlahKamar = $_POST["jumlahkamar"];
+  $id = $_POST["id"];
 
-  if (empty($name) || empty($email) || empty($password)) {
-    header("location: daftar.php?error=2");
+  if (empty($nama) || empty($alamat) || empty($jumlahKamar) || empty($id)) {
+    header("location: /kos-daftar.php?error=2");
   } else {
-    $findEmail = "SELECT * FROM user WHERE email='$email';";
-    $res = mysqli_query($conn, $findEmail);
-    $data = mysqli_fetch_assoc($res);
-
-    if (!empty($data)) {
-      header("location: daftar.php?error=1");
+    $insert = "INSERT INTO kos values (NULL, '$nama', '$alamat', $jumlahKamar, $id, NOW(), NOW());";
+    mysqli_query($conn, $insert);
+    if (mysqli_error($conn)) {
+      $error = $error . mysqli_error($conn);
+      header("location: /kos-daftar.php?error=$error&id=$id");
     } else {
-      $insert = "INSERT INTO user values (NULL, '$name', '$email', '$password', NOW(), NOW());";
-      $res = mysqli_query($conn, $insert);
-      if (mysqli_error($conn)) {
-        echo "Error : " . mysqli_error($conn);
-      } else {
-        $findId = "SELECT id FROM user where email='$email'";
-        $id = mysqli_fetch_assoc(mysqli_query($conn, $findId));
-        header("location: /kos-daftar.php?id=$id[id]");
-      }
+      header("location: /login.php");
     }
   }
 }
