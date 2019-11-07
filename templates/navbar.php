@@ -4,7 +4,7 @@ $dir = $_SERVER['DOCUMENT_ROOT'];
 
 <nav class="navbar navbar-expand-lg navbar-light bg-warning fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="#">Kosku</a>
+    <a class="navbar-brand" href="/welcome.php">Kosku</a>
     <!-- navbar toggler -->
     <button
       class="navbar-toggler"
