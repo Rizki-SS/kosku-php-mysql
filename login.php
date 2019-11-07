@@ -78,12 +78,12 @@
           <h2 class="h2" style="font-weight: bold;">Login</h2>
           <br /><br />
           <form action="/config/check.php" class="form-group" method="POST">
-            <label for="email">Email</label>
+            <label for="username">Email</label>
             <input
-              type="email"
-              name="email"
+              type="name"
+              name="username"
               class="form-control"
-              id="email"
+              id="username"
             /><br />
             <label for="password">Password</label>
             <input

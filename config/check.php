@@ -3,15 +3,14 @@ if(isset($_POST["submit"])){
   $dir = $_SERVER['DOCUMENT_ROOT'];
   include($dir.'/config/conn.php');
 
-  $email = $_POST["email"];
+  $username = $_POST["username"];
   $password = $_POST["password"];
   // echo $email;
-  $query = 'SELECT * FROM user WHERE email="'.$email.'";';
+  $query = "SELECT * FROM user WHERE email='$username' OR username='$username';";
   $res = mysqli_query($conn, $query);
   $data = mysqli_fetch_assoc($res);
 
-
-  if ($data["email"] == $email) {
+  if ($data["email"] == $username || $data["username"] == $username) {
     if (password_verify($password, $data["password"])) {
       session_start();
       $_SESSION["admin"] = $data;
