@@ -29,7 +29,7 @@
     }
 
     #hiasan {
-      background: url("assets/login-bg.jpg");
+      background: url("assets/kos-daftar-bg.jpg");
       background-size: cover;
       padding: 50px;
       padding-top: 100px;
