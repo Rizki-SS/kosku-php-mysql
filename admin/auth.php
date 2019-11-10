@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if(!isset($_SESSION["admin"])){
-  header("location: /welcome.php");
+  header("location: /login.php");
 }
 session_abort();
 ?>
