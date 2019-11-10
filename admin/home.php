@@ -1,6 +1,6 @@
 <?php
     $dir = $_SERVER["DOCUMENT_ROOT"];
-    include($dir . "/config/auth.php");
+    include($dir . "/admin/auth.php");
 ?>
 
 <html>

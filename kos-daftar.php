@@ -103,6 +103,9 @@ if (isset($_POST["daftar"])) {
   } else {
     $insert = "INSERT INTO kos values (NULL, '$nama', '$alamat', $jumlahKamar, $id, NOW(), NOW());";
     mysqli_query($conn, $insert);
+    $getIdKos = "SELECT id from kos where user_id=$id;";
+    $kosId = mysqli_fetch_assoc(mysqli_query($conn, $getIdKos));
+
     if (mysqli_error($conn)) {
       $error = $error . mysqli_error($conn);
       header("location: /kos-daftar.php?error=$error&id=$id");

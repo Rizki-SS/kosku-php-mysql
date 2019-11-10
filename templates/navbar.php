@@ -1,5 +1,6 @@
 <?php 
 $dir = $_SERVER['DOCUMENT_ROOT'];
+session_start();
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-warning fixed-top">
@@ -20,14 +21,14 @@ $dir = $_SERVER['DOCUMENT_ROOT'];
 
     <!-- navbar -->
     <?php 
-    session_start();
+    
     if (isset($_SESSION["admin"])) {
     ?>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- kiri -->
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="">Pengguna</a>
+          <a class="nav-link" href="/admin/data_pengguna">Pengguna</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Pembayaran</a>

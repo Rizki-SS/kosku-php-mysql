@@ -6,7 +6,7 @@ if(isset($_POST["submit"])){
   $username = $_POST["username"];
   $password = $_POST["password"];
   // echo $email;
-  $query = "SELECT * FROM user WHERE email='$username' OR username='$username';";
+  $query = "SELECT * FROM admin WHERE email='$username' OR username='$username';";
   $res = mysqli_query($conn, $query);
   $data = mysqli_fetch_assoc($res);
 

@@ -104,20 +104,20 @@ if (isset($_POST["daftar"])) {
   if (empty($name) || empty($email) || empty($password) || empty($username)) {
     header("location: daftar.php?error=2");
   } else {
-    $findEmail = "SELECT * FROM user WHERE email='$email';";
+    $findEmail = "SELECT * FROM admin WHERE email='$email';";
     $res = mysqli_query($conn, $findEmail);
     $data = mysqli_fetch_assoc($res);
 
     if (!empty($data)) {
       header("location: daftar.php?error=1");
     } else {
-      $insert = "INSERT INTO user values (NULL, '$name','$username', '$email', '$password', NOW(), NOW());";
+      $insert = "INSERT INTO admin values (NULL, '$name','$username', '$email', '$password', NOW(), NOW());";
       $res = mysqli_query($conn, $insert);
       if (mysqli_error($conn)) {
         $error = mysqli_error($conn);
         header("location: daftar.php?error=$error");
       } else {
-        $findId = "SELECT id FROM user where email='$email'";
+        $findId = "SELECT id FROM admin where email='$email'";
         $id = mysqli_fetch_assoc(mysqli_query($conn, $findId));
         header("location: /kos-daftar.php?id=$id[id]");
       }
