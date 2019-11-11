@@ -14,7 +14,7 @@ if(isset($_POST["submit"])){
     if (password_verify($password, $data["password"])) {
       session_start();
       $_SESSION["admin"] = $data;
-      header("location: /admin/home.php");
+      header("location: /admin/index.php");
     }else{
       header("location: /login.php?error=2");
     }
