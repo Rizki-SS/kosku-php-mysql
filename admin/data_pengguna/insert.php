@@ -24,7 +24,6 @@ if (isset($_POST["submit"])) {
     }
 
     $findDuplicate = "SELECT * FROM anak_kos where hp='$hp'";
-
     $duplicate = mysqli_query($conn, $findDuplicate)->fetch_assoc();
 
     if (!empty($duplicate)) {

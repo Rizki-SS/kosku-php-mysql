@@ -5,8 +5,8 @@ require_once($dir . "/admin/auth.php");
 session_start();
 $id = $_SESSION["admin"]["id"];
 session_abort();
-$getAnakKosData = "select nama, asal, hp, tipe from anak_kos
-inner join kos k on anak_kos.id_kos = k.id
+$getAnakKosData = "select ak.id, ak.nama, ak.asal, ak.hp, ak.tipe from anak_kos ak
+inner join kos k on ak.id_kos = k.id
 inner join admin a on k.admin_id = a.id
 where a.id = $id";
 
@@ -18,24 +18,25 @@ $res = mysqli_query($conn, $getAnakKosData);
 
 ?>
 <html>
-  <head>
-    <title>
-      Kosku - Data Pengguna
-    </title>
-    <?php include($dir . "/templates/resources.php"); ?>
-    <style>
-      #data-table {
-        padding-top: 100px;
-      }
-    </style>
-  </head>
 
-  <body>
-    <?php include($dir . "/templates/navbar.php"); ?>
-    <div class="container" id="data-table">
-      <h1>Data Pengguna</h1><br><br>
-      <a href="/admin/data_pengguna/create.php?id=<?= $kosId["id"]?>" class="btn btn-success">Tambah Data</a><br><br>
-      <div class="table-responsive">
+<head>
+  <title>
+    Kosku - Data Pengguna
+  </title>
+  <?php include($dir . "/templates/resources.php"); ?>
+  <style>
+    #data-table {
+      padding-top: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <?php include($dir . "/templates/navbar.php"); ?>
+  <div class="container" id="data-table">
+    <h1>Data Pengguna</h1><br><br>
+    <a href="/admin/data_pengguna/create.php?id=<?= $kosId["id"] ?>" class="btn btn-success">Tambah Data</a><br><br>
+    <div class="table-responsive">
       <table class="table">
         <thead class="thead-dark">
           <tr>
@@ -47,31 +48,75 @@ $res = mysqli_query($conn, $getAnakKosData);
           </tr>
         </thead>
         <tbody>
-          <?php 
+          <?php
           while ($users = mysqli_fetch_assoc($res)) {
-          ?>
-          <tr>
-            <td><?= $users["nama"] ?></td>
-            <td><?= $users["asal"] ?></td>
-            <td><?= $users["hp"] ?></td>
-            <td>
-              <?php 
-              if ($users["tipe"] == "1") {
-                echo "Kamar Mandi Dalam";
-              }else{
-                echo "Kamar Mandi Luar";
-              }
-              ?>
-            </td>
-            <td>
-              <a href="" class="btn btn-warning">Ubah</a>
-              <a href="" class="btn btn-danger">Hapus</a>
-            </td>
-          </tr>
-          <?php }?>
+            ?>
+            <tr>
+              <td><?= $users["nama"] ?></td>
+              <td><?= $users["asal"] ?></td>
+              <td><?= $users["hp"] ?></td>
+              <td>
+                <?php
+                  if ($users["tipe"] == "1") {
+                    echo "Kamar Mandi Dalam";
+                  } else {
+                    echo "Kamar Mandi Luar";
+                  }
+                  ?>
+              </td>
+              <td>
+                <a href="/admin/data_pengguna/edit.php?id=<?= $users["id"] ?>" class="btn btn-warning">Ubah</a>
+                <a data-id="<?= $users["id"] ?>" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger" id="deleteData">Hapus</a>
+              </td>
+            </tr>
+          <?php } ?>
         </tbody>
       </table>
+    </div>
+  </div>
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Apakah anda yakin menghapus data ini?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Ga Jadi Deh..</button>
+          <button type="button" class="btn btn-primary" id="hapusAja">Hapus</button>
+        </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+<script>
+  $(document).ready(function() {
+    $('#deleteData').click(function() {
+      var ID = $(this).data('id');
+      $('#hapusAja').data('id', ID);
+    });
+
+    $('#hapusAja').click(function() {
+      var ID = $(this).data('id');
+
+      function ajaxDelete() {
+        $.ajax({
+          url: "/admin/data_pengguna/delete.php?id=" + ID,
+          method: "GET",
+        });
+      }
+
+      $.when(ajaxDelete()).done(function(response) {
+        console.log(response)
+      });
+
+    });
+  });
+</script>
+
 </html>

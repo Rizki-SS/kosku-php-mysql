@@ -2,6 +2,15 @@
 $dir = $_SERVER["DOCUMENT_ROOT"];
 include($dir . "/config/conn.php");
 require_once($dir . "/admin/auth.php");
+
+$userId = $_GET["id"];
+$getData = "SELECT * FROM anak_kos where id=$userId;";
+$data = mysqli_query($conn, $getData)->fetch_assoc();
+
+if (mysqli_error($conn)) {
+  echo mysqli_error($conn);
+}
+
 ?>
 
 <html>
@@ -49,18 +58,18 @@ require_once($dir . "/admin/auth.php");
     <?php
     }
     ?>
-    <form action="/admin/data_pengguna/insert.php" method="post" class="form-group">
+    <form action="/admin/data_pengguna/update.php" method="post" class="form-group">
       <div class="row">
         <div class="col-lg-6">
           <label for="nama">Nama</label><br />
-          <input type="text" name="nama" id="nama" class="form-control" /><br />
+          <input type="text" name="nama" id="nama" class="form-control" value="<?= $data["nama"] ?>" /><br />
           <label for="asal">Asal</label><br />
-          <input type="text" name="asal" id="asal" class="form-control" /><br />
-          <input type="text" name="idkos" value="<?= $_GET["id"] ?>" style="display:none;">
+          <input type="text" name="asal" id="asal" class="form-control" value="<?= $data["asal"] ?>" /><br />
+          <input type="text" name="idkos" value="<?= $data["id"] ?>" style="display:none;">
         </div>
         <div class="col-lg-6">
           <label for="nohp">No. HP</label><br />
-          <input type="text" name="nohp" id="nohp" class="form-control" /><br />
+          <input type="text" name="nohp" id="nohp" class="form-control" value="<?= $data["hp"] ?>" /><br />
           <label for="tipekos">Tipe Kos</label><br />
           <select class="custom-select  " id="inlineFormCustomSelect" name="tipe">
             <option selected value="0">Pilih</option>
