@@ -15,6 +15,14 @@ $kosId = mysqli_query($conn, $getKosId)->fetch_assoc();
 
 $res = mysqli_query($conn, $getAnakKosData);
 
+$msg = $_GET["msg"];
+if ($msg == "insert_ok") {
+  $msg = "Data Berhasil Disimpan";
+} else if ($msg == "delete_ok") {
+  $msg = "Data Berhasil Dihapus";
+} else {
+  $msg = "";
+}
 
 ?>
 <html>
@@ -36,6 +44,15 @@ $res = mysqli_query($conn, $getAnakKosData);
   <div class="container" id="data-table">
     <h1>Data Pengguna</h1><br><br>
     <a href="/admin/data_pengguna/create.php?id=<?= $kosId["id"] ?>" class="btn btn-success">Tambah Data</a><br><br>
+    <?php
+    if (!empty($msg)) {
+      ?>
+      <div class="alert alert-success" id="msgAlert" style="display:none;">
+        <?= $msg ?>
+      </div>
+    <?php
+    }
+    ?>
     <div class="table-responsive">
       <table class="table">
         <thead class="thead-dark">
@@ -65,8 +82,11 @@ $res = mysqli_query($conn, $getAnakKosData);
                   ?>
               </td>
               <td>
-                <a href="/admin/data_pengguna/edit.php?id=<?= $users["id"] ?>" class="btn btn-warning">Ubah</a>
-                <a data-id="<?= $users["id"] ?>" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger" id="deleteData">Hapus</a>
+                <a href="/admin/data_pengguna/edit.php?id=<?= $users["id"] ?>" class="btn btn-warning">
+                  Ubah</a>
+                <button data-id="<?= $users["id"] ?>" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger" id="deleteData">
+                  Hapus
+                </button>
               </td>
             </tr>
           <?php } ?>
@@ -78,7 +98,7 @@ $res = mysqli_query($conn, $getAnakKosData);
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -87,8 +107,11 @@ $res = mysqli_query($conn, $getAnakKosData);
           Apakah anda yakin menghapus data ini?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Ga Jadi Deh..</button>
-          <button type="button" class="btn btn-primary" id="hapusAja">Hapus</button>
+          <form action="/admin/data_pengguna/delete.php" method="get">
+            <input type="text" name="delete_id" id="delete_id">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Ga Jadi Deh..</button>
+            <button type="submit" class="btn btn-danger" id="hapusAja">Hapus</button>
+          </form>
         </div>
       </div>
     </div>
@@ -96,25 +119,20 @@ $res = mysqli_query($conn, $getAnakKosData);
 </body>
 <script>
   $(document).ready(function() {
+    $("#msgAlert").slideDown();
+    $("#msgAlert").delay(3000);
+    $("#msgAlert").slideUp();
+
     $('#deleteData').click(function() {
       var ID = $(this).data('id');
+      console.log(ID);
       $('#hapusAja').data('id', ID);
+      $("#delete_id").val(ID);
     });
 
     $('#hapusAja').click(function() {
       var ID = $(this).data('id');
-
-      function ajaxDelete() {
-        $.ajax({
-          url: "/admin/data_pengguna/delete.php?id=" + ID,
-          method: "GET",
-        });
-      }
-
-      $.when(ajaxDelete()).done(function(response) {
-        console.log(response)
-      });
-
+      $("#delete_id").val(ID);
     });
   });
 </script>

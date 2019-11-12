@@ -30,6 +30,8 @@ require_once($dir . "/admin/auth.php");
     $msg = "Data Tidak Valid";
   } else if ($error == "1") {
     $msg = "Data Sudah Ada";
+  } else if ($error == "3") {
+    $msg = "Kamar Sudah Penuh";
   }
 
   ?>
@@ -70,7 +72,9 @@ require_once($dir . "/admin/auth.php");
         </div>
       </div>
       <input type="submit" value="Simpan" name="submit" class="btn btn-success" />
+      <a href="/admin/data_pengguna/index.php" class="btn btn-secondary">Batal</a>
     </form>
+
   </div>
 </body>
 

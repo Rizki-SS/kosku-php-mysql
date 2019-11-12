@@ -79,6 +79,7 @@ if (mysqli_error($conn)) {
         </div>
       </div>
       <input type="submit" value="Simpan" name="submit" class="btn btn-success" />
+      <a href="/admin/data_pengguna/index.php" class="btn btn-secondary">Batal</a>
     </form>
   </div>
 </body>

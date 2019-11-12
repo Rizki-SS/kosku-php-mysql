@@ -3,8 +3,6 @@ $dir = $_SERVER["DOCUMENT_ROOT"];
 include($dir . "/config/conn.php");
 require_once($dir . "/admin/auth.php");
 
-
-
 if (isset($_POST["submit"])) {
   $nama = $_POST["nama"];
   $asal = $_POST["asal"];
@@ -23,19 +21,42 @@ if (isset($_POST["submit"])) {
       header("location: /admin/data_pengguna/create.php?error=2&id=$id");
     }
 
-    $findDuplicate = "SELECT * FROM anak_kos where hp='$hp'";
-    $duplicate = mysqli_query($conn, $findDuplicate)->fetch_assoc();
 
-    if (!empty($duplicate)) {
-      header("location: /admin/data_pengguna/create.php?error=1&id=$id");
+
+    // Apakah Kamar Sudah Penuh
+    // 1. Menghitung jumlah kamar yang terisi
+    $count = "select count(*) as inserted from anak_kos ak
+    inner join kos k on ak.id_kos = k.id
+    where k.id=$id;";
+    $countOutput = mysqli_query($conn, $count);
+    $inserted = $countOutput->fetch_assoc();
+    $inserted = (int) $inserted["inserted"];
+    echo $inserted;
+
+    //2. Mengambil data jumlah kamar pada tabel kos
+    $max = "select kos_user from kos where id = $id";
+    $MaxOutput = mysqli_query($conn, $max)->fetch_assoc();
+    $max = (int) $MaxOutput["kos_user"];
+    echo $max;
+
+    if ($inserted >= $max) {
+      header("location: /admin/data_pengguna/create.php?error=3&id=$id");
     } else {
-      $insertUser = "INSERT INTO anak_kos values(NULL, '$nama', '$asal', '$hp', $id, $tipe);";
-      mysqli_query($conn, $insertUser);
-
-      if (mysqli_error($conn)) {
-        echo mysqli_error($conn);
+      //Mencari data duplikat
+      $findDuplicate = "SELECT * FROM anak_kos where hp='$hp'";
+      $duplicate = mysqli_query($conn, $findDuplicate)->fetch_assoc();
+      if (!empty($duplicate)) {
+        header("location: /admin/data_pengguna/create.php?error=1&id=$id");
       } else {
-        header("location: /admin/data_pengguna/index.php?msg=insert_ok");
+        $insertUser = "INSERT INTO anak_kos values(NULL, '$nama', '$asal', '$hp', $id, $tipe);";
+        mysqli_query($conn, $insertUser);
+
+        if (mysqli_error($conn)) {
+          echo mysqli_error($conn);
+        } else {
+          echo "Oke";
+          header("location: /admin/data_pengguna/index.php?msg=insert_ok");
+        }
       }
     }
   }
