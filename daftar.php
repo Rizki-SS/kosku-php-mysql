@@ -79,8 +79,6 @@
           <input type="text" name="name" class="form-control" id="name" placeholder="Nama" /><br />
           <label for="username">Username</label>
           <input type="text" name="username" class="form-control" id="username" placeholder="Username" /><br />
-          <label for="email">Email</label>
-          <input type="email" name="email" class="form-control" id="email" placeholder="Email" /><br />
           <label for="password">Password</label>
           <input type="password" name="password" class="form-control" id="password" placeholder="Password" />
           <br />
@@ -97,27 +95,26 @@ if (isset($_POST["daftar"])) {
   include($dir . "/config/conn.php");
 
   $name = $_POST["name"];
-  $email = $_POST["email"];
   $username = $_POST["username"];
   $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
-  if (empty($name) || empty($email) || empty($password) || empty($username)) {
+  if (empty($name) || empty($password) || empty($username)) {
     header("location: daftar.php?error=2");
   } else {
-    $findEmail = "SELECT * FROM admin WHERE email='$email';";
-    $res = mysqli_query($conn, $findEmail);
+    $findUsername = "SELECT * FROM admin WHERE username='$username';";
+    $res = mysqli_query($conn, $findUsername);
     $data = mysqli_fetch_assoc($res);
 
     if (!empty($data)) {
       header("location: daftar.php?error=1");
     } else {
-      $insert = "INSERT INTO admin values (NULL, '$name','$username', '$email', '$password', NOW(), NOW());";
+      $insert = "INSERT INTO admin values (NULL, '$name','$username', '$password');";
       $res = mysqli_query($conn, $insert);
       if (mysqli_error($conn)) {
         $error = mysqli_error($conn);
         header("location: daftar.php?error=$error");
       } else {
-        $findId = "SELECT id FROM admin where email='$email'";
+        $findId = "SELECT id FROM admin where username='$username'";
         $id = mysqli_fetch_assoc(mysqli_query($conn, $findId));
         header("location: /kos-daftar.php?id=$id[id]");
       }

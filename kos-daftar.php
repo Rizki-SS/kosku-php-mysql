@@ -1,3 +1,31 @@
+<?php
+$dir = $_SERVER["DOCUMENT_ROOT"];
+include($dir . "/config/conn.php");
+
+if (isset($_POST["daftar"])) {
+
+  $nama = $_POST["nama"];
+  $alamat = $_POST["alamat"];
+  $jumlahKamar = $_POST["jumlahkamar"];
+  $kamarMandiDalam = $_POST["kamarMandiDalam"];
+  $kamarMandiLuar = $_POST["kamarMandiLuar"];
+  $id = $_POST["id"];
+
+  if (empty($nama) || empty($alamat) || empty($jumlahKamar) || empty($id)) {
+    header("location: /kos-daftar.php?error=2");
+  } else {
+    $insert = "INSERT INTO kos values (NULL, '$nama', '$alamat', $id, $jumlahKamar, $kamarMandiDalam, $kamarMandiLuar);";
+    mysqli_query($conn, $insert);
+
+    if (mysqli_error($conn)) {
+      $error = $error . mysqli_error($conn);
+      header("location: /kos-daftar.php?error=$error&id=$id");
+    } else {
+      header("location: /login.php");
+    }
+  }
+}
+?>
 <html>
 
 <head>
@@ -78,8 +106,12 @@
           <label for="alamat">Alamat Kos</label>
           <input type="text" name="alamat" class="form-control" id="alamat" placeholder="Alamat Kos" /><br />
           <label for="jumlahKamar">Jumlah Kamar</label>
-          <input type="text" name="jumlahkamar" class="form-control" id="jumlahKamar" placeholder="Jumlah Kamar" />
-          <input type="text" name="id" value="<?php echo $_GET['id']; ?>" style="display: none;">
+          <input type="text" name="jumlahkamar" class="form-control" id="jumlahKamar" placeholder="Jumlah Kamar" /><br>
+          <label for="kamarMandiDalam">Harga Kamar Mandi Dalam</label>
+          <input type="text" name="kamarMandiDalam" class="form-control" id="kamarMandiDalam" placeholder="Harga Kamar Mandi Dalam" /><br>
+          <label for="kamarMandiLuar">Harga Kamar Mandi Luar</label>
+          <input type="text" name="kamarMandiLuar" class="form-control" id="kamarMandiLuar" placeholder="Harga Kamar Mandi Luar" /><br>
+          <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
           <br />
           <input type="submit" name="daftar" value="Daftar" class="btn btn-dark" />
         </form>
@@ -89,29 +121,3 @@
 </body>
 
 </html>
-<?php
-if (isset($_POST["daftar"])) {
-  include($dir . "/config/conn.php");
-
-  $nama = $_POST["nama"];
-  $alamat = $_POST["alamat"];
-  $jumlahKamar = $_POST["jumlahkamar"];
-  $id = $_POST["id"];
-
-  if (empty($nama) || empty($alamat) || empty($jumlahKamar) || empty($id)) {
-    header("location: /kos-daftar.php?error=2");
-  } else {
-    $insert = "INSERT INTO kos values (NULL, '$nama', '$alamat', $jumlahKamar, $id, NOW(), NOW());";
-    mysqli_query($conn, $insert);
-    $getIdKos = "SELECT id from kos where user_id=$id;";
-    $kosId = mysqli_fetch_assoc(mysqli_query($conn, $getIdKos));
-
-    if (mysqli_error($conn)) {
-      $error = $error . mysqli_error($conn);
-      header("location: /kos-daftar.php?error=$error&id=$id");
-    } else {
-      header("location: /login.php");
-    }
-  }
-}
-?>

@@ -1,25 +1,23 @@
-<?php 
-if(isset($_POST["submit"])){
+<?php
+if (isset($_POST["submit"])) {
   $dir = $_SERVER['DOCUMENT_ROOT'];
-  include($dir.'/config/conn.php');
+  include($dir . '/config/conn.php');
 
   $username = $_POST["username"];
   $password = $_POST["password"];
-  // echo $email;
-  $query = "SELECT * FROM admin WHERE email='$username' OR username='$username';";
+  $query = "SELECT * FROM admin WHERE username='$username';";
   $res = mysqli_query($conn, $query);
   $data = mysqli_fetch_assoc($res);
 
-  if ($data["email"] == $username || $data["username"] == $username) {
+  if ($data["username"] == $username) {
     if (password_verify($password, $data["password"])) {
       session_start();
       $_SESSION["admin"] = $data;
       header("location: /admin/index.php");
-    }else{
+    } else {
       header("location: /login.php?error=2");
     }
-  }else{
+  } else {
     header("location: /login.php?error=1");
   }
 }
-?>

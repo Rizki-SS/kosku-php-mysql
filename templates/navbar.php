@@ -36,8 +36,8 @@ session_start();
             Irfan Rafif
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Profile</a>
-            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="/admin/settings/admin.php">Akun</a>
+            <a class="dropdown-item" href="/admin/settings/kos.php">Kos</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="/logout.php">Logout</a>
           </div>
