@@ -108,7 +108,7 @@ if ($msg == "insert_ok") {
         </div>
         <div class="modal-footer">
           <form action="/admin/data_pengguna/delete.php" method="get">
-            <input type="text" name="delete_id" id="delete_id">
+            <input type="hidden" name="delete_id" id="delete_id">
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Ga Jadi Deh..</button>
             <button type="submit" class="btn btn-danger" id="hapusAja">Hapus</button>
           </form>
@@ -127,11 +127,6 @@ if ($msg == "insert_ok") {
       var ID = $(this).data('id');
       console.log(ID);
       $('#hapusAja').data('id', ID);
-      $("#delete_id").val(ID);
-    });
-
-    $('#hapusAja').click(function() {
-      var ID = $(this).data('id');
       $("#delete_id").val(ID);
     });
   });
