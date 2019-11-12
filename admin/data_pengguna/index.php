@@ -84,7 +84,7 @@ if ($msg == "insert_ok") {
               <td>
                 <a href="/admin/data_pengguna/edit.php?id=<?= $users["id"] ?>" class="btn btn-warning">
                   Ubah</a>
-                <button data-id="<?= $users["id"] ?>" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger" id="deleteData">
+                <button data-id="<?= $users["id"] ?>" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger deleteData">
                   Hapus
                 </button>
               </td>
@@ -123,7 +123,7 @@ if ($msg == "insert_ok") {
     $("#msgAlert").delay(3000);
     $("#msgAlert").slideUp();
 
-    $('#deleteData').click(function() {
+    $('.deleteData').click(function() {
       var ID = $(this).data('id');
       console.log(ID);
       $('#hapusAja').data('id', ID);
