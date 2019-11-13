@@ -20,7 +20,7 @@ session_start();
         <!-- kiri -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/admin/data_pengguna">Pengguna</a>
+            <a class="nav-link" href="/admin/data_pengguna">Anak Kos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Pembayaran</a>

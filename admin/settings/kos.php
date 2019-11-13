@@ -33,6 +33,9 @@ if (isset($_POST["submit"])) {
 
 <head>
   <?php include($dir . "/templates/resources.php") ?>
+  <title>
+    Kosku - Pengaturan Kos
+  </title>
 </head>
 
 <body>
