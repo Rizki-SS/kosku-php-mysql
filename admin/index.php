@@ -66,10 +66,19 @@ if ($msg == "user_update_ok") {
         </div>
       </div>
       <div class="col-lg-4">
+        <?php
+        $getDataPembayaran = "select count(*) as done from anak_kos ak
+        inner join pembayaran p on ak.id = p.id_anak_kos
+        inner join kos k on ak.id_kos = k.id
+        inner join admin a on k.admin_id = a.id
+        where a.id = $admin[id] and p.bulan = MONTH(NOW()) and p.tahun = YEAR(NOW())";
+
+        $data = mysqli_query($conn, $getDataPembayaran)->fetch_assoc();
+        ?>
         <div class="card">
           <div class="card-body">
             <span>Terbayar Bulan Ini</span>
-            <h1><b>0</b> <small> / <?= $inserted ?></small></h1>
+            <h1><b><?= $data["done"] ?></b> <small> / <?= $inserted ?></small></h1>
           </div>
         </div>
       </div>
@@ -77,7 +86,7 @@ if ($msg == "user_update_ok") {
         <div class="card">
           <div class="card-body">
             <span>Komplain</span>
-            <h1>0</h1>
+            <h1><b>0</b></h1>
           </div>
         </div>
       </div>

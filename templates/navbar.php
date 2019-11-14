@@ -23,7 +23,7 @@ session_start();
             <a class="nav-link" href="/admin/data_pengguna">Anak Kos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Pembayaran</a>
+            <a class="nav-link" href="/admin/pembayaran">Pembayaran</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Komplain</a>

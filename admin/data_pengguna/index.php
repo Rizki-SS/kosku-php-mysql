@@ -42,8 +42,8 @@ if ($msg == "insert_ok") {
 <body>
   <?php include($dir . "/templates/navbar.php"); ?>
   <div class="container" id="data-table">
-    <h1>Data Pengguna</h1><br><br>
-    <a href="/admin/data_pengguna/create.php?id=<?= $kosId["id"] ?>" class="btn btn-success">Tambah Data</a><br><br>
+    <h1>Data Anak Kos</h1><br><br>
+    <a href="/admin/data_pengguna/create.php?id=<?= $kosId["id"] ?>" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Data</a><br><br>
     <?php
     if (!empty($msg)) {
       ?>
@@ -83,9 +83,9 @@ if ($msg == "insert_ok") {
               </td>
               <td>
                 <a href="/admin/data_pengguna/edit.php?id=<?= $users["id"] ?>" class="btn btn-warning">
-                  Ubah</a>
+                  <i class="fa fa-edit"></i> Ubah Data</a>
                 <button data-id="<?= $users["id"] ?>" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger deleteData">
-                  Hapus
+                  <i class="fa fa-trash"></i> Hapus Data
                 </button>
               </td>
             </tr>
