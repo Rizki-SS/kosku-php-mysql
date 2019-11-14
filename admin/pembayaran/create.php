@@ -25,6 +25,13 @@ $res = mysqli_query($conn, $getAnakKosData);
       padding-top: 100px;
     }
   </style>
+  <script>
+    $(document).ready(function() {
+      var id = <?= $_GET["id"] ?>;
+      console.log(id);
+      $("#<?= $_GET["id"] ?>").attr("selected", "selected");
+    });
+  </script>
 </head>
 
 <body>
@@ -69,7 +76,7 @@ $res = mysqli_query($conn, $getAnakKosData);
             <option selected value="">Pilih</option>
             <?php
             while ($user = mysqli_fetch_assoc($res)) { ?>
-              <option selected value="<?= $user["id"] ?>"><?= $user["nama"] ?></option>
+              <option value="<?= $user["id"] ?>" id="<?= $user["id"] ?>"><?= $user["nama"] ?></option>
             <?php }
             ?>
           </select><br><br>

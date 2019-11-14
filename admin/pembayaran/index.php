@@ -8,7 +8,7 @@ session_abort();
 if (isset($_GET["bulan"]) && isset($_GET["tahun"])) {
   $bulan = $_GET["bulan"];
   $tahun = $_GET["tahun"];
-  $getDataPembayaran = "select nama, tipe,     case
+  $getDataPembayaran = "select p.id, ak.id as id_anak_kos, nama, tipe, case
   when tipe = 0
     then k.harga_kamar_mandi_dalam
     else k.harga_kamar_mandi_luar
@@ -16,16 +16,16 @@ if (isset($_GET["bulan"]) && isset($_GET["tahun"])) {
   tgl_transaksi 
   from anak_kos ak
   left join (
-      select id_anak_kos, tgl_transaksi, bulan, tahun 
-      from pembayaran 
-      where bulan = $bulan 
-      and tahun = $tahun) as p
+    select id, id_anak_kos, tgl_transaksi, bulan, tahun 
+    from pembayaran 
+    where bulan = $bulan 
+    and tahun = $tahun) as p
   on ak.id = p.id_anak_kos
   inner join kos k on ak.id_kos = k.id
   inner join admin a on k.admin_id = a.id
   where a.id = $id";
 } else {
-  $getDataPembayaran = "select nama, tipe,
+  $getDataPembayaran = "select p.id, ak.id as id_anak_kos, nama, tipe,
   case
   when tipe = 0
   then k.harga_kamar_mandi_dalam
@@ -33,7 +33,7 @@ if (isset($_GET["bulan"]) && isset($_GET["tahun"])) {
 end as tagihan,
 tgl_transaksi from anak_kos ak
   left join (
-      select id_anak_kos, tgl_transaksi 
+      select id, id_anak_kos, tgl_transaksi 
       from pembayaran 
       where bulan = MONTH(NOW()) 
         and tahun = YEAR(NOW())) as p
@@ -131,9 +131,9 @@ if ($msg == "insert_ok") {
             <td>
               <?php
                 if (empty($users["tgl_transaksi"])) { ?>
-                <a href="/admin/pembayaran/create.php" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Data</a>
+                <a href="/admin/pembayaran/create.php?id=<?= $users["id_anak_kos"] ?>" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Data</a>
               <?php } else { ?>
-                <a href="" class="btn btn-light"><i class="fa fa-edit"></i> Ubah Data</a>
+                <a href="/admin/pembayaran/edit.php?id=<?= $users["id"] ?>" class="btn btn-light"><i class="fa fa-edit"></i> Ubah Data</a>
               <?php } ?>
             </td>
           </tr>
