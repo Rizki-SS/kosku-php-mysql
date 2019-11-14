@@ -5,12 +5,17 @@ require_once($dir . "/admin/auth.php");
 session_start();
 $id = $_SESSION["admin"]["id"];
 session_abort();
+$idPembayaran = $_GET["id"];
+$findDataPembayaran = "SELECT * FROM pembayaran where id=$idPembayaran";
+
+$data = mysqli_query($conn, $findDataPembayaran)->fetch_assoc();
+
 $getAnakKosData = "select ak.id, ak.nama from anak_kos ak
 inner join kos k on ak.id_kos = k.id
 inner join admin a on k.admin_id = a.id
 where a.id = $id";
 
-$res = mysqli_query($conn, $getAnakKosData);
+$users = mysqli_query($conn, $getAnakKosData);
 ?>
 
 <html>
@@ -25,11 +30,12 @@ $res = mysqli_query($conn, $getAnakKosData);
       padding-top: 100px;
     }
   </style>
+
   <script>
     $(document).ready(function() {
-      var id = <?= $_GET["id"] ?>;
+      var id = <?= $data["id_anak_kos"] ?>;
       console.log(id);
-      $("#<?= $_GET["id"] ?>").attr("selected", "selected");
+      $("#<?= $data["id_anak_kos"] ?>").attr("selected", "selected");
     });
   </script>
 </head>
@@ -44,10 +50,6 @@ $res = mysqli_query($conn, $getAnakKosData);
 
   if ($error == "2") {
     $msg = "Data Tidak Valid";
-  } else if ($error == "1") {
-    $msg = "Data Sudah Ada";
-  } else if ($error == "3") {
-    $msg = "Kamar Sudah Penuh";
   } else {
     $msg = $error;
   }
@@ -69,25 +71,26 @@ $res = mysqli_query($conn, $getAnakKosData);
     <?php
     }
     ?>
-    <form action="/admin/pembayaran/insert.php" method="post" class="form-group">
+    <form action="/admin/pembayaran/update.php" method="post" class="form-group">
       <div class="row">
         <div class="col-lg-6">
-          <select class="custom-select  " id="inlineFormCustomSelect" name="id">
-            <option selected value="">Pilih</option>
+          <select class="custom-select" id="inlineFormCustomSelect" name="idanakkos">
+            <option value="">Pilih</option>
             <?php
-            while ($user = mysqli_fetch_assoc($res)) { ?>
-              <option value="<?= $user["id"] ?>" id="<?= $user["id"] ?>"><?= $user["nama"] ?></option>
+            while ($user = mysqli_fetch_assoc($users)) { ?>
+              <option value="<?= $user["id"] ?>" id="<?= $user["id"] ?>"> <?= $user["nama"] ?></option>
             <?php }
             ?>
           </select><br><br>
           Pembayaran Untuk :<br />
           <div class="row">
             <div class="col-sm-6"><label for="bulan">Bulan</label>
-              <input type="text" name="bulan" id="bulan" class="form-control" /><br />
+              <input type="text" name="bulan" id="bulan" class="form-control" value="<?= $data["bulan"] ?>" /><br />
             </div>
             <div class="col-sm-6"><label for="tahun">Tahun</label>
-              <input type="text" name="tahun" id="tahun" class="form-control" /><br />
+              <input type="text" name="tahun" id="tahun" class="form-control" value="<?= $data["tahun"] ?>" /><br />
             </div>
+            <input type="hidden" name="id" class="form-control" value="<?= $data["id"] ?>" /><br />
           </div>
         </div>
       </div>
