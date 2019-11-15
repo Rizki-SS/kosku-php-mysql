@@ -22,10 +22,6 @@ $komplains = mysqli_query($conn, $getDataKomplain);
   </title>
   <?php include($dir . "/templates/resources.php"); ?>
   <style>
-    #data-table {
-      padding-top: 100px;
-    }
-
     .card-komplain {
       margin-top: 25px;
       margin-bottom: 25px;
@@ -47,7 +43,7 @@ $komplains = mysqli_query($conn, $getDataKomplain);
     <?php
     }
     ?>
-
+    <a href="/admin/komplain/create.php" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah Data</a>
     <?php
     $i = 1;
     while ($komplain = mysqli_fetch_assoc($komplains)) { ?>

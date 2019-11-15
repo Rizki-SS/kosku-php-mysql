@@ -16,12 +16,6 @@ $data = mysqli_query($conn, $findData)->fetch_assoc();
   <?php
   include($dir . "/templates/resources.php");
   ?>
-
-  <style>
-    #content {
-      margin-top: 100px;
-    }
-  </style>
 </head>
 
 <body>

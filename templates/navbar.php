@@ -3,7 +3,7 @@ $dir = $_SERVER['DOCUMENT_ROOT'];
 session_start();
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-warning fixed-top" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)">
+<nav class="navbar navbar-expand-lg navbar-light bg-warning sticky-top" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); margin-bottom: 25px;">
   <div class="container">
     <a class="navbar-brand" href="/admin/index.php">Kosku</a>
     <!-- navbar toggler -->

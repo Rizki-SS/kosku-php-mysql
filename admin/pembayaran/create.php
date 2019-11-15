@@ -20,11 +20,6 @@ $res = mysqli_query($conn, $getAnakKosData);
     Kosku - Data Pengguna
   </title>
   <?php include($dir . "/templates/resources.php"); ?>
-  <style>
-    #data-table {
-      padding-top: 100px;
-    }
-  </style>
   <script>
     $(document).ready(function() {
       var id = <?= $_GET["id"] ?>;
