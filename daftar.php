@@ -22,7 +22,6 @@
   ?>
   <style>
     .login {
-      width: 200px;
       margin: auto;
       padding-left: 100px;
       padding-right: 100px;

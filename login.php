@@ -1,26 +1,25 @@
 <html>
   <head>
     <title>Kosku - Login</title>
-    <?php 
-    $dir = $_SERVER['DOCUMENT_ROOT'];
-    include ($dir."/templates/resources.php");
-    
-    if (isset($_GET["error"])) {
-      $error = $_GET["error"];
-    }else{
-      $error = "";
-    }
+    <?php
+  $dir = $_SERVER['DOCUMENT_ROOT'];
+  include($dir . "/templates/resources.php");
 
-    $pesan = "";
-    if ($error == 1) {
-      $pesan = "Username Invalid";
-    }else if ($error == 2) {
-      $pesan = "Password Invalid";
-    }
-    ?>
+  if (isset($_GET["error"])) {
+    $error = $_GET["error"];
+  } else {
+    $error = "";
+  }
+
+  $pesan = "";
+  if ($error == 1) {
+    $pesan = "Username Invalid";
+  } else if ($error == 2) {
+    $pesan = "Password Invalid";
+  }
+  ?>
     <style>
       .login {
-        width: 200px;
         margin: auto;
         padding-left: 100px;
         padding-right: 100px;
@@ -38,6 +37,7 @@
       }
     </style>
   </head>
+
   <body>
     <div class="container-fluid">
       <div class="row">
@@ -56,9 +56,9 @@
           <a href="/daftar.php" class="btn btn-dark">Daftar</a>
         </div>
         <div class="col-lg-6 login">
-          <?php 
-                if (!empty($pesan)) {
-                ?>
+          <?php
+        if (!empty($pesan)) {
+          ?>
           <div
             class="alert alert-danger alert alert-danger alert-dismissible fade show"
           >
@@ -72,9 +72,9 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <?php 
-                }
-                ?>
+          <?php
+        }
+        ?>
           <h2 class="h2" style="font-weight: bold;">Login</h2>
           <br /><br />
           <form action="/config/check.php" class="form-group" method="POST">
