@@ -26,7 +26,7 @@ session_start();
             <a class="nav-link" href="/admin/pembayaran">Pembayaran</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Komplain</a>
+            <a class="nav-link" href="/admin/komplain">Komplain</a>
           </li>
         </ul>
 

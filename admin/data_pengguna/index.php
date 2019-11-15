@@ -82,10 +82,12 @@ if ($msg == "insert_ok") {
                   ?>
               </td>
               <td>
+                <a href="/admin/data_pengguna/view.php?id=<?= $users["id"] ?>" class="btn btn-primary">
+                  <i class="fa fa-eye"></i></a>
                 <a href="/admin/data_pengguna/edit.php?id=<?= $users["id"] ?>" class="btn btn-warning">
-                  <i class="fa fa-edit"></i>Ubah Data</a>
+                  <i class="fa fa-edit"></i></a>
                 <button data-id="<?= $users["id"] ?>" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger deleteData">
-                  <i class="fa fa-trash"></i>Hapus Data
+                  <i class="fa fa-trash"></i>
                 </button>
               </td>
             </tr>
