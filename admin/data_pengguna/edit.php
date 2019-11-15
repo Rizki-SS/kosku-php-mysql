@@ -40,7 +40,6 @@ if (mysqli_error($conn)) {
   <?php include($dir . "/templates/navbar.php"); ?>
   <div class="container" id="data-table">
     <h1>Ubah Data Anak Kos</h1>
-    <br /><br />
     <?php
     if (!empty($msg)) {
       ?>
@@ -61,10 +60,18 @@ if (mysqli_error($conn)) {
             <input type="text" name="nama" id="nama" class="form-control" value="<?= $data["nama"] ?>" />
           </div>
           <div class="form-group">
-            <label for="asal">Asal</label><br />
-            <input type="text" name="asal" id="asal" class="form-control" value="<?= $data["asal"] ?>" /><br />
+            <label for="asal">Asal</label>
+            <input type="text" name="asal" id="asal" class="form-control" value="<?= $data["asal"] ?>" />
           </div>
-          <input type="text" name="idkos" value="<?= $data["id"] ?>" style="display:none;">
+          <div class="form-group">
+            <label for="status">Status</label>
+            <input type="text" name="status" id="status" class="form-control" value="<?= $data["status"] ?>" />
+          </div>
+          <div class="form-group">
+            <label for="lembaga">Lembaga</label>
+            <input type="text" name="lembaga" id="lembaga" class="form-control" value="<?= $data["lembaga"] ?>" />
+          </div>
+          <input type="text" name="id" value="<?= $data["id"] ?>" style="display:none;">
         </div>
         <div class="col-lg-6">
           <div class="form-group">

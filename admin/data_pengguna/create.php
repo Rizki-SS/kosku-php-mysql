@@ -34,7 +34,7 @@ require_once($dir . "/admin/auth.php");
   ?>
   <?php include($dir . "/templates/navbar.php"); ?>
   <div class="container" id="data-table">
-    <h1>Tambah Data Anak Kos</h1><br><br>
+    <h1>Tambah Data Anak Kos</h1>
 
     <?php
     if (!empty($msg)) {
@@ -58,6 +58,14 @@ require_once($dir . "/admin/auth.php");
           <div class="form-group">
             <label for="asal">Asal</label>
             <input type="text" name="asal" id="asal" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <input type="text" name="status" id="status" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="lembaga">Lembaga</label>
+            <input type="text" name="lembaga" id="lembaga" class="form-control" />
           </div>
           <input type="text" name="idkos" value="<?= $_GET["id"] ?>" style="display:none;">
         </div>

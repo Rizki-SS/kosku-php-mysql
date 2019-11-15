@@ -6,12 +6,21 @@ session_start();
 $id = $_SESSION["admin"]["id"];
 session_abort();
 
-$getDataKomplain = "select km.id, ak.nama, km.judul, km.deskripsi, km.tanggal, km.selesai from komplain km
+if (isset($_GET["showall"])) {
+  $getDataKomplain = "select km.id, ak.nama, km.judul, km.deskripsi, km.tanggal, km.selesai from komplain km
+inner join anak_kos ak on km.id_anak_kos = ak.id
+inner join kos k on ak.id_kos = k.id
+inner join admin a on k.admin_id = a.id
+where a.id = $id
+order by km.id";
+} else {
+  $getDataKomplain = "select km.id, ak.nama, km.judul, km.deskripsi, km.tanggal, km.selesai from komplain km
 inner join anak_kos ak on km.id_anak_kos = ak.id
 inner join kos k on ak.id_kos = k.id
 inner join admin a on k.admin_id = a.id
 where a.id = $id and km.selesai = 0
 order by km.id";
+}
 
 $komplains = mysqli_query($conn, $getDataKomplain);
 ?>
@@ -89,10 +98,10 @@ $komplains = mysqli_query($conn, $getDataKomplain);
           </div>
         </div>
       </div>
-    <?php
-      $i++;
-    }
-    ?>
+    <?php $i++;
+    } ?>
+
+    <a href="/admin/komplain/index.php?showall=y" class="btn btn-warning">Tampilkan Semua Komplain</a>
   </div>
   <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

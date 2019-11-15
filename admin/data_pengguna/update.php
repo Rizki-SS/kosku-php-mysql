@@ -10,7 +10,9 @@ if (isset($_POST["submit"])) {
   $asal = $_POST["asal"];
   $hp = $_POST["nohp"];
   $tipe = $_POST["tipe"];
-  $id = $_POST["idkos"];
+  $id = $_POST["id"];
+  $status = $_POST["status"];
+  $lembaga = $_POST["lembaga"];
 
   if (empty($nama) || empty($asal) || empty($hp) || empty($tipe) || $tipe == "0") {
     header("location: /admin/data_pengguna/edit.php?error=2&id=$id");
@@ -23,8 +25,9 @@ if (isset($_POST["submit"])) {
       header("location: /admin/data_pengguna/edit.php?error=2&id=$id");
     }
 
-    $insertUser = "UPDATE anak_kos SET nama = '$nama', asal = '$asal', hp = '$hp', tipe = $tipe
-    where id = 1";
+    $insertUser = "UPDATE anak_kos SET nama = '$nama', asal = '$asal', 
+    hp = '$hp', tipe = $tipe, lembaga = '$lembaga', status = '$status'
+    where id = $id";
     mysqli_query($conn, $insertUser);
 
     if (mysqli_error($conn)) {

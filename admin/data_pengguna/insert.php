@@ -9,8 +9,13 @@ if (isset($_POST["submit"])) {
   $hp = $_POST["nohp"];
   $tipe = $_POST["tipe"];
   $id = $_POST["idkos"];
+  $status = $_POST["status"];
+  $lembaga = $_POST["lembaga"];
 
-  if (empty($nama) || empty($asal) || empty($hp) || empty($tipe)) {
+  if (
+    empty($nama) || empty($asal) || empty($hp) || empty($tipe)
+    || empty($status) || empty($lembaga)
+  ) {
     header("location: /admin/data_pengguna/create.php?error=2&id=$id");
   } else {
     if ($tipe == "1") {
@@ -48,7 +53,9 @@ if (isset($_POST["submit"])) {
       if (!empty($duplicate)) {
         header("location: /admin/data_pengguna/create.php?error=1&id=$id");
       } else {
-        $insertUser = "INSERT INTO anak_kos values(NULL, '$nama', '$asal', '$hp', $id, $tipe);";
+        $insertUser = "INSERT INTO anak_kos values(NULL, 
+        '$nama', '$asal', '$hp', $id, $tipe, '$status',
+        '$lembaga', NULL, NULL);";
         mysqli_query($conn, $insertUser);
 
         if (mysqli_error($conn)) {
