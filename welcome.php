@@ -53,9 +53,33 @@
 </head>
 
 <body>
-  <?php
-  include("templates/navbar.php")
-  ?>
+  <nav class="navbar navbar-expand-lg navbar-light bg-warning sticky-top" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+    <div class="container">
+      <a class="navbar-brand" href="/admin/index.php">Kosku</a>
+      <!-- navbar toggler -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- navbar -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- kiri -->
+        <ul class="navbar-nav mr-auto">
+        </ul>
+
+        <!-- kanan -->
+        <div>
+          <a href="/daftar.php" class="btn btn-outline-dark">
+            Daftar
+          </a>
+          <a href="/login.php" class="btn btn-dark">
+            Login
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </nav>
 
   <div class="container-fluid" id="header">
     <div class="offset-2 col-8">

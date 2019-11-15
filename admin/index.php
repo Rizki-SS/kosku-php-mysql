@@ -25,10 +25,10 @@ if ($msg == "user_update_ok") {
 
 <body>
   <?php include($dir . "/templates/navbar.php") ?>
-  <div class="container" style="margin-top: 100px;">
+  <div class="container">
     hello, <br />
     <h1><b><?= $admin["name"] ?></b></h1>
-    <br /><br />
+    <br>
     <?php
     if (!empty($msg)) {
       ?>

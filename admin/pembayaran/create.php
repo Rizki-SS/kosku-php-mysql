@@ -50,7 +50,7 @@ $res = mysqli_query($conn, $getAnakKosData);
   ?>
   <?php include($dir . "/templates/navbar.php"); ?>
   <div class="container" id="data-table">
-    <h1>Tambah Data Pengguna</h1>
+    <h1>Tambah Data Pembayaran</h1>
     <br /><br />
     <?php
     if (!empty($msg)) {
@@ -67,21 +67,29 @@ $res = mysqli_query($conn, $getAnakKosData);
     <form action="/admin/pembayaran/insert.php" method="post" class="form-group">
       <div class="row">
         <div class="col-lg-6">
-          <select class="custom-select  " id="inlineFormCustomSelect" name="id">
-            <option selected value="">Pilih</option>
-            <?php
-            while ($user = mysqli_fetch_assoc($res)) { ?>
-              <option value="<?= $user["id"] ?>" id="<?= $user["id"] ?>"><?= $user["nama"] ?></option>
-            <?php }
-            ?>
-          </select><br><br>
-          Pembayaran Untuk :<br />
+          <div class="form-group">
+            <select class="custom-select  " id="inlineFormCustomSelect" name="id">
+              <option selected value="">Pilih</option>
+              <?php
+              while ($user = mysqli_fetch_assoc($res)) { ?>
+                <option value="<?= $user["id"] ?>" id="<?= $user["id"] ?>"><?= $user["nama"] ?></option>
+              <?php }
+              ?>
+            </select>
+          </div>
+          Pembayaran Untuk :
           <div class="row">
-            <div class="col-sm-6"><label for="bulan">Bulan</label>
-              <input type="text" name="bulan" id="bulan" class="form-control" /><br />
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="bulan">Bulan</label>
+                <input type="text" name="bulan" id="bulan" class="form-control" />
+              </div>
             </div>
-            <div class="col-sm-6"><label for="tahun">Tahun</label>
-              <input type="text" name="tahun" id="tahun" class="form-control" /><br />
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="tahun">Tahun</label>
+                <input type="text" name="tahun" id="tahun" class="form-control" />
+              </div>
             </div>
           </div>
         </div>

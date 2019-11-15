@@ -52,7 +52,7 @@ $users = mysqli_query($conn, $getAnakKosData);
   ?>
   <?php include($dir . "/templates/navbar.php"); ?>
   <div class="container" id="data-table">
-    <h1>Tambah Data Pengguna</h1>
+    <h1>Ubah Data Pembayaran</h1>
     <br /><br />
     <?php
     if (!empty($msg)) {
@@ -69,6 +69,7 @@ $users = mysqli_query($conn, $getAnakKosData);
     <form action="/admin/pembayaran/update.php" method="post" class="form-group">
       <div class="row">
         <div class="col-lg-6">
+          <label for="">Nama</label>
           <select class="custom-select" id="inlineFormCustomSelect" name="idanakkos">
             <option value="">Pilih</option>
             <?php

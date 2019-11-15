@@ -15,14 +15,7 @@ $kosId = mysqli_query($conn, $getKosId)->fetch_assoc();
 
 $res = mysqli_query($conn, $getAnakKosData);
 
-$msg = $_GET["msg"];
-if ($msg == "insert_ok") {
-  $msg = "Data Berhasil Disimpan";
-} else if ($msg == "delete_ok") {
-  $msg = "Data Berhasil Dihapus";
-} else {
-  $msg = "";
-}
+
 
 ?>
 <html>
@@ -40,6 +33,15 @@ if ($msg == "insert_ok") {
     <h1>Data Anak Kos</h1><br><br>
     <a href="/admin/data_pengguna/create.php?id=<?= $kosId["id"] ?>" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Data</a><br><br>
     <?php
+    $msg = $_GET["msg"];
+    if ($msg == "insert_ok") {
+      $msg = "Data Berhasil Disimpan";
+    } else if ($msg == "delete_ok") {
+      $msg = "Data Berhasil Dihapus";
+    } else {
+      $msg = "";
+    }
+
     if (!empty($msg)) {
       ?>
       <div class="alert alert-success" id="msgAlert" style="display:none;">

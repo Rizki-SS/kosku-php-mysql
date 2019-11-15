@@ -27,6 +27,13 @@ $komplains = mysqli_query($conn, $getDataKomplain);
       margin-bottom: 25px;
     }
   </style>
+  <script>
+    $(document).ready(function() {
+      $("#msgAlert").slideDown();
+      $("#msgAlert").delay(3000);
+      $("#msgAlert").slideUp();
+    });
+  </script>
 </head>
 
 <body>
@@ -34,16 +41,24 @@ $komplains = mysqli_query($conn, $getDataKomplain);
   <div class="container" id="data-table">
     <h1>Data Komplain</h1>
     <br /><br />
+    <a href="/admin/komplain/create.php" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah Data</a><br><br>
     <?php
+    $msg = $_GET["msg"];
+    if ($msg == "insert_ok") {
+      $msg = "Data Berhasil Disimpan";
+    } else if ($msg == "delete_ok") {
+      $msg = "Data Berhasil Dihapus";
+    } else {
+      $msg = "";
+    }
+
     if (!empty($msg)) {
       ?>
       <div class="alert alert-success" id="msgAlert" style="display:none;">
         <?= $msg ?>
       </div>
-    <?php
-    }
-    ?>
-    <a href="/admin/komplain/create.php" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah Data</a>
+    <?php } ?>
+
     <?php
     $i = 1;
     while ($komplain = mysqli_fetch_assoc($komplains)) { ?>

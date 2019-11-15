@@ -82,11 +82,19 @@ if ($msg == "insert_ok") {
     <?php
     }
     ?>
-    <form action="/admin/pembayaran/index.php" method="get" class="float-right">
-      Filter :
-      <input type="text" name="bulan" placeholder="Bulan">
-      <input type="text" name="tahun" placeholder="Tahun">
-      <input type="submit" value="Go" name="submit" class="btn btn-secondary">
+    <form action="/admin/pembayaran/index.php" method="get" class="float-right form-inline">
+      <div class="mb-2 mx-sm-3">
+        Filter :
+      </div>
+      <div class="form-group mb-2">
+        <input type="text" name="bulan" placeholder="Bulan" class="form-control">
+      </div>
+      <div class="form-group mx-sm-3 mb-2">
+        <input type="text" name="tahun" placeholder="Tahun" class="form-control">
+      </div>
+      <div class="form-group mb-2">
+        <input type="submit" value="Go" name="submit" class="btn btn-secondary">
+      </div>
     </form>
     <table class="table">
       <thead class="thead-dark">
