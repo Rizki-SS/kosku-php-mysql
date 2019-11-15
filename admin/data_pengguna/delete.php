@@ -6,10 +6,11 @@ $id = $_GET["delete_id"];
 
 $deleteData = "DELETE FROM anak_kos WHERE id=$id";
 
-mysqli_query($conn, $deleteData);
 
-if (mysqli_error($conn)) {
-  echo mysqli_error($conn);
-} else {
+
+try {
+  mysqli_query($conn, $deleteData);
   header("location: /admin/data_pengguna/index.php?msg=delete_ok");
+} catch (\Throwable $th) {
+  header("location: /admin/data_pengguna/index.php?msg=$th");
 }
