@@ -27,7 +27,7 @@ if ($msg == "user_update_ok") {
   <?php include($dir . "/templates/navbar.php") ?>
   <div class="container">
     hello, <br />
-    <h1><b><?= $user["name"] ?></b></h1>
+    <h1><b><?= $user["nama"] ?></b></h1>
     <br>
     <?php
     if (!empty($msg)) {

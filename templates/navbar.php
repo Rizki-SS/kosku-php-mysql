@@ -33,7 +33,7 @@ session_start();
         <!-- kanan -->
         <div class="dropdown">
           <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Irfan Rafif
+            <?= $_SESSION["admin"]["name"] ?>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="/admin/settings/admin.php">Akun</a>
@@ -43,9 +43,32 @@ session_start();
           </div>
         </div>
       </div>
-    <?php
-    } else {
-      ?>
+    <?php } else if (isset($_SESSION["user"])) { ?>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- kiri -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="">Pembayaran</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Komplain</a>
+          </li>
+        </ul>
+
+        <!-- kanan -->
+        <div class="dropdown">
+          <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <?= $_SESSION["user"]["nama"] ?>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/admin/settings/admin.php">Akun</a>
+            <a class="dropdown-item" href="/admin/settings/kos.php">Kos</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/logout.php">Logout</a>
+          </div>
+        </div>
+      </div>
+    <?php } else { ?>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- kiri -->
         <ul class="navbar-nav mr-auto">
