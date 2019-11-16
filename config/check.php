@@ -27,6 +27,9 @@ if (isset($_POST["submit"])) {
     $user = mysqli_fetch_assoc($res);
     if ($user["username"] == $username) {
       if (password_verify($password, $user["password"])) {
+        $findUser = "SELECT * FROM anak_kos WHERE username='$username';";
+        $res = mysqli_query($conn, $findUser);
+        $user = mysqli_fetch_assoc($res);
         session_start();
         $_SESSION["user"] = $user;
         header("location: /user/index.php");
