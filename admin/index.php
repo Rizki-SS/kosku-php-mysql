@@ -6,13 +6,15 @@ session_start();
 $admin = $_SESSION["admin"];
 session_abort();
 
-$msg = $_GET["msg"];
-if ($msg == "user_update_ok") {
-  $msg = "Data Anda Berhasil Diubah";
-} else if ($msg == "delete_ok") {
-  $msg = "Data Berhasil Dihapus";
-} else {
-  $msg = "";
+if (isset($_GET["msg"])) {
+  $msg = $_GET["msg"];
+  if ($msg == "user_update_ok") {
+    $msg = "Data Anda Berhasil Diubah";
+  } else if ($msg == "delete_ok") {
+    $msg = "Data Berhasil Dihapus";
+  } else {
+    $msg = "";
+  }
 }
 ?>
 

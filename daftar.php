@@ -89,8 +89,8 @@
         ?>
         <button id="pemilikKos" class="btn btn-primary">Daftar Sebagai Pemilik Kos</button>
         <button id="anakKos" class="btn btn-primary">Daftar Sebagai Anak Kos</button>
-        <form action="/config/register.php" method="POST" id="tabs-1">
-          <div style="display:none">
+        <form action="/config/register.php" method="POST" id="tabs-1" style="display:none">
+          <div>
             <label for="name">Nama</label>
             <input type="text" name="name" class="form-control" id="name" placeholder="Nama" /><br />
             <label for="username">Username</label>
@@ -99,7 +99,7 @@
             <input type="password" name="password" class="form-control" id="password" placeholder="Password" />
           </div>
           <input type="hidden" name="tipeUser" id="tipeUser" value="pemilikKos">
-          <input type="submit" name="daftar" value="Daftar" class="btn btn-dark" id="tombolSubmit" style="display:none" />
+          <input type="submit" name="daftar" value="Daftar" class="btn btn-dark" id="tombolSubmit" />
         </form>
         <form action="/config/register.php" method="POST">
           <div id="tabs-2" style="display:none">

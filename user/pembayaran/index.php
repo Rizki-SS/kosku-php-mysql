@@ -6,18 +6,14 @@ session_start();
 $user = $_SESSION["user"];
 session_abort();
 
-if (isset($_GET["msg"])) {
-  $msg = $_GET["msg"];
-
-  if ($msg == "user_update_ok") {
-    $msg = "Data Anda Berhasil Diubah";
-  } else if ($msg == "delete_ok") {
-    $msg = "Data Berhasil Dihapus";
-  } else {
-    $msg = "";
-  }
+$msg = $_GET["msg"];
+if ($msg == "user_update_ok") {
+  $msg = "Data Anda Berhasil Diubah";
+} else if ($msg == "delete_ok") {
+  $msg = "Data Berhasil Dihapus";
+} else {
+  $msg = "";
 }
-
 ?>
 
 <html>
@@ -30,8 +26,7 @@ if (isset($_GET["msg"])) {
 <body>
   <?php include($dir . "/templates/navbar.php") ?>
   <div class="container">
-    hello, <br />
-    <h1><b><?= $user["nama"] ?></b></h1>
+    <h1>Data Pembayaran</h1>
     <br>
     <?php
     if (!empty($msg)) {
@@ -42,6 +37,8 @@ if (isset($_GET["msg"])) {
     <?php
     }
     ?>
+
+    
   </div>
 </body>
 

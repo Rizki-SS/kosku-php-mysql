@@ -47,9 +47,11 @@ $res = mysqli_query($conn, $getDataPembayaran);
 $getKosId = "select id from kos where admin_id = $id";
 $kosId = mysqli_query($conn, $getKosId)->fetch_assoc();
 
-$msg = $_GET["msg"];
-if ($msg == "insert_ok") {
-  $msg = "Data Berhasil Disimpan";
+if (isset($_GET["msg"])) {
+  $msg = $_GET["msg"];
+  if ($msg == "insert_ok") {
+    $msg = "Data Berhasil Disimpan";
+  }
 }
 
 ?>

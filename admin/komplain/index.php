@@ -59,13 +59,15 @@ $komplains = mysqli_query($conn, $getDataKomplain);
     <h1>Data Komplain</h1>
     <br /><br />
     <?php
-    $msg = $_GET["msg"];
-    if ($msg == "insert_ok") {
-      $msg = "Data Berhasil Disimpan";
-    } else if ($msg == "delete_ok") {
-      $msg = "Data Berhasil Dihapus";
-    } else {
-      $msg = "";
+    if (isset($_GET["msg"])) {
+      $msg = $_GET["msg"];
+      if ($msg == "insert_ok") {
+        $msg = "Data Berhasil Disimpan";
+      } else if ($msg == "delete_ok") {
+        $msg = "Data Berhasil Dihapus";
+      } else {
+        $msg = "";
+      }
     }
 
     if (!empty($msg)) {
