@@ -72,7 +72,7 @@
         <h2 class="h2" style="font-weight: bold;">Login</h2>
         <br /><br />
         <form action="/config/check.php" class="form-group" method="POST">
-          <label for="username">Email</label>
+          <label for="username">Username</label>
           <input type="name" name="username" class="form-control" id="username" /><br />
           <label for="password">Password</label>
           <input type="password" name="password" class="form-control" id="password" />

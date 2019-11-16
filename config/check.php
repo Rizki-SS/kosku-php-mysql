@@ -5,19 +5,36 @@ if (isset($_POST["submit"])) {
 
   $username = $_POST["username"];
   $password = $_POST["password"];
-  $query = "SELECT * FROM admin WHERE username='$username';";
-  $res = mysqli_query($conn, $query);
-  $data = mysqli_fetch_assoc($res);
+  $findAdmin = "SELECT * FROM admin WHERE username='$username';";
+  $res = mysqli_query($conn, $findAdmin);
+  $admin = mysqli_fetch_assoc($res);
 
-  if ($data["username"] == $username) {
-    if (password_verify($password, $data["password"])) {
-      session_start();
-      $_SESSION["admin"] = $data;
-      header("location: /admin/index.php");
+  if (!empty($admin)) {
+    if ($admin["username"] == $username) {
+      if (password_verify($password, $admin["password"])) {
+        session_start();
+        $_SESSION["admin"] = $admin;
+        header("location: /admin/index.php");
+      } else {
+        header("location: /login.php?error=2");
+      }
     } else {
-      header("location: /login.php?error=2");
+      header("location: /login.php?error=1");
     }
   } else {
-    header("location: /login.php?error=1");
+    $findUser = "SELECT * FROM anak_kos WHERE username='$username';";
+    $res = mysqli_query($conn, $findUser);
+    $user = mysqli_fetch_assoc($res);
+    if ($user["username"] == $username) {
+      if (password_verify($password, $user["password"])) {
+        session_start();
+        $_SESSION["user"] = $user;
+        header("location: /user/index.php");
+      } else {
+        header("location: /login.php?error=2");
+      }
+    } else {
+      header("location: /login.php?error=1");
+    }
   }
 }

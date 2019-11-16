@@ -89,7 +89,7 @@
         ?>
         <button id="pemilikKos" class="btn btn-primary">Daftar Sebagai Pemilik Kos</button>
         <button id="anakKos" class="btn btn-primary">Daftar Sebagai Anak Kos</button>
-        <form action="/register.php" method="POST" id="tabs-1">
+        <form action="/config/register.php" method="POST" id="tabs-1">
           <div style="display:none">
             <label for="name">Nama</label>
             <input type="text" name="name" class="form-control" id="name" placeholder="Nama" /><br />
@@ -101,7 +101,7 @@
           <input type="hidden" name="tipeUser" id="tipeUser" value="pemilikKos">
           <input type="submit" name="daftar" value="Daftar" class="btn btn-dark" id="tombolSubmit" style="display:none" />
         </form>
-        <form action="/register.php" method="POST">
+        <form action="/config/register.php" method="POST">
           <div id="tabs-2" style="display:none">
             <div class="form-group">
               <label for="name">Nama</label>
