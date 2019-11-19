@@ -42,6 +42,43 @@ if (isset($_GET["msg"])) {
     <?php
     }
     ?>
+
+    <div class="card">
+      <div class="card-header">
+        <span>Pembayaran Bulan Ini</span>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6">
+            <h4 style="font-weight:bold;">Sudah Membayar</h4>
+          </div>
+          <div class="col-6">
+            <p style="text-align:right;">Dibayar Pada Tanggal 01-01-1920</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <a href="" class="btn btn-success btn-block">Tambah Data</a>
+    <br>
+    <div class="card">
+      <div class="card-header">
+        <span>Komplain</span>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-1">1</div>
+          <div class="col-7">
+            <h4 style="font-weight:bold;">Judul Komplain</h4>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui repellendus doloremque ipsam illum dignissimos quidem deleniti accusantium porro distinctio deserunt cum iure officiis, amet voluptates. Ipsa officiis quos possimus reprehenderit!</p>
+          </div>
+          <div class="col-3">
+            <img src="/assets/success.svg" style="width: 40px; height:40px; float:right">
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
   </div>
 </body>
 
