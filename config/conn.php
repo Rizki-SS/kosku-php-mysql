@@ -1,8 +1,7 @@
 <?php
-$db_host = "localhost";
-$db_username = "admin";
+$db_host = "mysql-6367-0.cloudclusters.net";
+$db_username = "mirfanrafif";
 $db_password = "irfanRAFI";
 $db_name = "kosku";
-$dir = $_SERVER['DOCUMENT_ROOT'];
 
-$conn = mysqli_connect($db_host, $db_username, $db_password, $db_name);
+$conn = mysqli_connect($db_host, $db_username, $db_password, $db_name, 10015);
