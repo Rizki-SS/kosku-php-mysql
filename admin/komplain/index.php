@@ -78,21 +78,17 @@ $komplains = mysqli_query($conn, $getDataKomplain);
     <?php } ?>
     <a href="/admin/komplain/create.php" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah Data</a>
     <?php
-    $i = 1;
     while ($komplain = mysqli_fetch_assoc($komplains)) { ?>
       <div class="card card-komplain">
         <div class="card-body">
           <div class="row">
-            <div class="col-sm-1">
-              <h1><?= $i ?></h1>
-            </div>
             <div class="col-sm-8">
               <h2><?= $komplain["judul"] ?></h2>
               <p>
                 <?= $komplain["deskripsi"] ?>
               </p>
             </div>
-            <div class="col-sm-3 float-right text-right">
+            <div class="col-sm-3">
               <h6><?= $komplain["tanggal"] ?></h6>
               <h6><?= $komplain["nama"] ?></h6>
               <button data-toggle="modal" data-id="<?= $komplain["id"] ?>" data-target="#deleteModal" class="btn btn-light deleteData">Tandai Sudah Selesai</button>
@@ -100,7 +96,7 @@ $komplains = mysqli_query($conn, $getDataKomplain);
           </div>
         </div>
       </div>
-    <?php $i++;
+    <?php
     } ?>
 
     <a href="/admin/komplain/index.php?showall=y" class="btn btn-warning">Tampilkan Semua Komplain</a>

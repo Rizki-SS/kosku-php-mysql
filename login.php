@@ -21,9 +21,8 @@
   ?>
   <style>
     .login {
+      padding-top: 25px;
       margin: auto;
-      padding-left: 100px;
-      padding-right: 100px;
     }
 
     #hiasan {
@@ -72,12 +71,16 @@
         <h2 class="h2" style="font-weight: bold;">Login</h2>
         <br /><br />
         <form action="/config/check.php" class="form-group" method="POST">
-          <label for="username">Username</label>
-          <input type="name" name="username" class="form-control" id="username" /><br />
-          <label for="password">Password</label>
-          <input type="password" name="password" class="form-control" id="password" />
-          <br />
-          <input type="submit" name="submit" value="Login" class="btn btn-dark" />
+          <div class="row">
+            <div class="offset-lg-2 col-lg-8">
+              <label for="username">Username</label>
+              <input type="name" name="username" class="form-control" id="username" /><br />
+              <label for="password">Password</label>
+              <input type="password" name="password" class="form-control" id="password" />
+              <br />
+              <input type="submit" name="submit" value="Login" class="btn btn-dark" />
+            </div>
+          </div>
         </form>
       </div>
     </div>

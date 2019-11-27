@@ -4,11 +4,11 @@
   <title>Kosku - Welcome Page</title>
   <style>
     #header {
-      height: 500px;
       background-image: url("assets/head-bg.jpg");
       background-attachment: fixed;
       background-size: cover;
-      padding-top: 200px;
+      padding-top: 100px;
+      padding-bottom: 100px;
     }
 
     .benefit {
@@ -17,7 +17,7 @@
     }
 
     .img-benefit {
-      width: 500px;
+      width: 100%;
       height: auto;
     }
 
@@ -83,7 +83,7 @@
 
   <div class="container-fluid" id="header">
     <div class="offset-2 col-8">
-      <h1 class="display-4 text-light text-center">
+      <h1 class="display-5 text-light text-center">
         Manajemen Kos Dalam 1 Aplikasi
       </h1>
       <h6 class="text-light text-center">

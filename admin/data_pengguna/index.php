@@ -57,8 +57,6 @@ $res = mysqli_query($conn, $getAnakKosData);
         <thead class="thead-dark">
           <tr>
             <th scope="col">Nama</th>
-            <th scope="col">Asal</th>
-            <th scope="col">No. HP</th>
             <th scope="col">Tipe</th>
             <th scope="col">Tindakan</th>
           </tr>
@@ -69,8 +67,6 @@ $res = mysqli_query($conn, $getAnakKosData);
             ?>
             <tr>
               <td><?= $users["nama"] ?></td>
-              <td><?= $users["asal"] ?></td>
-              <td><?= $users["hp"] ?></td>
               <td>
                 <?php
                   if ($users["tipe"] == "1") {

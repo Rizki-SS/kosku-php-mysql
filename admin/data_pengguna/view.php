@@ -56,6 +56,7 @@ $data = mysqli_query($conn, $findData)->fetch_assoc();
         </table>
       </div>
     </div>
+    <a href="/admin/data_pengguna/index.php" class="btn btn-secondary">Kembali</a>
   </div>
 </body>
 

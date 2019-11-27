@@ -21,8 +21,14 @@ if (isset($_GET["msg"])) {
 <html>
 
 <head>
-  <?php include($dir . "/templates/resources.php") ?>
+  <?php include($dir . "/templates/resources.php"); ?>
   <title>Kosku - Home</title>
+  <style>
+    .card{
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+  </style>
 </head>
 
 <body>

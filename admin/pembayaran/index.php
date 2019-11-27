@@ -90,7 +90,7 @@ if (isset($_GET["msg"])) {
       </div>
       <div class="form-group mb-2">
         <select name="bulan" id="bulan" class="custom-select">
-          <option value="">Pilih</option>
+          <option value="">Bulan</option>
           <option value="1">Januari</option>
           <option value="2">Februari</option>
           <option value="3">Maret</option>
@@ -116,8 +116,6 @@ if (isset($_GET["msg"])) {
       <thead class="thead-dark">
         <tr>
           <th scope="col">Nama</th>
-          <th scope="col">Tipe</th>
-          <th scope="col">Tagihan</th>
           <th scope="col">Status Pembayaran</th>
           <th scope="col">Tindakan</th>
         </tr>
@@ -130,16 +128,6 @@ if (isset($_GET["msg"])) {
             <td><?= $users["nama"] ?></td>
             <td>
               <?php
-                if ($users["tipe"] == "1") {
-                  echo "Kamar Mandi Dalam";
-                } else {
-                  echo "Kamar Mandi Luar";
-                }
-                ?>
-            </td>
-            <td><?= $users["tagihan"] ?></td>
-            <td>
-              <?php
                 if (empty($users["tgl_transaksi"])) {
                   echo "Belum Membayar";
                 } else {
@@ -150,9 +138,9 @@ if (isset($_GET["msg"])) {
             <td>
               <?php
                 if (empty($users["tgl_transaksi"])) { ?>
-                <a href="/admin/pembayaran/create.php?id=<?= $users["id_anak_kos"] ?>" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Data</a>
+                <a href="/admin/pembayaran/create.php?id=<?= $users["id_anak_kos"] ?>" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</a>
               <?php } else { ?>
-                <a href="/admin/pembayaran/edit.php?id=<?= $users["id"] ?>" class="btn btn-light"><i class="fa fa-edit"></i> Ubah Data</a>
+                <a href="/admin/pembayaran/edit.php?id=<?= $users["id"] ?>" class="btn btn-light"><i class="fa fa-edit"></i> Ubah</a>
               <?php } ?>
             </td>
           </tr>

@@ -20,6 +20,13 @@ if (mysqli_error($conn)) {
     Kosku - Data Pengguna
   </title>
   <?php include($dir . "/templates/resources.php"); ?>
+  <script>
+    $(document).ready(function() {
+      var tipe = <?= $_GET["tipe"] + 1 ?>;
+      console.log(tipe);
+      $("#<?= $_GET["tipe"] + 1;?>").attr("selected", "selected");
+    });
+  </script>
 </head>
 
 <body>
@@ -81,9 +88,9 @@ if (mysqli_error($conn)) {
           <div class="form-group">
             <label for="tipekos">Tipe Kos</label>
             <select class="custom-select  " id="inlineFormCustomSelect" name="tipe">
-              <option selected value="0">Pilih</option>
-              <option value="1">Kamar Mandi Luar</option>
-              <option value="2">Kamar Mandi Dalam</option>
+              <option selected>Pilih</option>
+              <option value="1" id="1">Kamar Mandi Luar</option>
+              <option value="2" id="2">Kamar Mandi Dalam</option>
             </select>
           </div>
         </div>
