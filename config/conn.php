@@ -1,6 +1,6 @@
 <?php
 $db_host = "mysql-6367-0.cloudclusters.net";
-$db_username = "admin";
+$db_username = "mirfanrafif";
 $db_password = "irfanRAFI";
 $db_name = "kosku";
 
