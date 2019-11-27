@@ -59,7 +59,7 @@ if (isset($_GET["msg"])) {
       </div>
     </div>
     <br>
-    <a href="" class="btn btn-success btn-block">Tambah Data</a>
+    <a href="/user/pembayaran/create.php" class="btn btn-success btn-block">Tambah Data</a>
     <br>
     <div class="card">
       <div class="card-header">
