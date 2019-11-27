@@ -65,16 +65,30 @@ if (isset($_GET["msg"])) {
       <div class="card-header">
         <span>Komplain</span>
       </div>
+      <?php
+      $id = $user["id"];
+      $getDataKomplain = "SELECT * FROM komplain WHERE id_anak_kos = $id ORDER BY id DESC LIMIT 1; ";
+      $res = mysqli_query($conn, $getDataKomplain)->fetch_assoc();
+      ?>
       <div class="card-body">
         <div class="row">
           <div class="col-1">1</div>
           <div class="col-7">
-            <h4 style="font-weight:bold;">Judul Komplain</h4>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui repellendus doloremque ipsam illum dignissimos quidem deleniti accusantium porro distinctio deserunt cum iure officiis, amet voluptates. Ipsa officiis quos possimus reprehenderit!</p>
+            <h4 style="font-weight:bold;"><?= $res["judul"] ?></h4>
+            <p><?= $res["deskripsi"] ?></p>
           </div>
-          <div class="col-3">
-            <img src="/assets/success.svg" style="width: 40px; height:40px; float:right">
-          </div>
+          <?php
+          $selesai = $res["selesai"] + 1;
+          if ($selesai == 2) { ?>
+            <div class="col-3">
+              <img src="/assets/success.svg" style="width: 40px; height:40px; float:right">
+            </div>
+          <?php } else if($selesai  == 1){ ?>
+            <div class="col-3">
+              <img src="/assets/error.svg" style="width: 40px; height:40px; float:right">
+            </div>
+          <?php }
+          ?>
         </div>
       </div>
     </div>

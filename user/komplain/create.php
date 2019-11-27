@@ -4,8 +4,6 @@ include($dir . "/config/conn.php");
 require_once($dir . "/user/auth.php");
 $id = $_SESSION["user"]["id"];
 
-$res = mysqli_query($conn, $getAnakKosData);
-
 if (isset($_GET["error"])) {
   $error = $_GET["error"];
 } else {
