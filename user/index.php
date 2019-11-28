@@ -44,16 +44,35 @@ if (isset($_GET["msg"])) {
     ?>
 
     <div class="card">
+      <?php
+      $id = $user["id"];
+      $findPembayaranNow = "SELECT * FROM pembayaran where bulan = MONTH(NOW()) and tahun = YEAR(NOW()) and id_anak_kos = $id";
+      $res = mysqli_query($conn, $findPembayaranNow)->fetch_assoc();
+      ?>
       <div class="card-header">
         <span>Pembayaran Bulan Ini</span>
       </div>
       <div class="card-body">
         <div class="row">
           <div class="col-6">
-            <h4 style="font-weight:bold;">Sudah Membayar</h4>
+            <?php
+            if (!empty($res)) { ?>
+              <h4 style="font-weight:bold;">Sudah Membayar</h4>
+            <?php } else {
+              ?> <h4 style="font-weight:bold;">Belum Membayar</h4>
+            <?php
+            }
+            ?>
           </div>
           <div class="col-6">
-            <p style="text-align:right;">Dibayar Pada Tanggal 01-01-1920</p>
+            <?php
+            if (!empty($res)) { ?>
+              <p>Dibayar pada tanggal <?= $res["tgl_transaksi"] ?></p>
+            <?php } else {
+              ?> <a href="/user/pembayaran/create.php" class="btn btn-success btn-block">Tambah Data</a>
+            <?php
+            }
+            ?>
           </div>
         </div>
       </div>
@@ -83,7 +102,7 @@ if (isset($_GET["msg"])) {
             <div class="col-3">
               <img src="/assets/success.svg" style="width: 40px; height:40px; float:right">
             </div>
-          <?php } else if($selesai  == 1){ ?>
+          <?php } else if ($selesai  == 1) { ?>
             <div class="col-3">
               <img src="/assets/error.svg" style="width: 40px; height:40px; float:right">
             </div>

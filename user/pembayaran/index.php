@@ -26,8 +26,8 @@ if (isset($_GET["msg"])) {
   <title>Kosku - Pembayaran</title>
   <style>
     .card {
-      margin-top: 25px;
-      margin-bottom: 25px;
+      margin-top: 16px;
+      margin-bottom: 16px;
     }
   </style>
   <script>
@@ -43,7 +43,6 @@ if (isset($_GET["msg"])) {
   <?php include($dir . "/templates/navbar.php") ?>
   <div class="container">
     <h1 style="font-weight:bold;">Data Pembayaran</h1>
-    <br>
     <?php
     if (!empty($msg)) {
       ?>
@@ -53,9 +52,6 @@ if (isset($_GET["msg"])) {
     <?php
     }
     ?>
-    <a href="/user/pembayaran/create.php" class="btn btn-success btn-block">Tambah Data</a>
-    <br>
-    <h4>Pembayaran Bulan Ini</h4>
     <div class="card">
       <?php
       $findPembayaranNow = "SELECT * FROM pembayaran where bulan = MONTH(NOW()) and tahun = YEAR(NOW()) and id_anak_kos = $id";
@@ -71,25 +67,24 @@ if (isset($_GET["msg"])) {
             if (!empty($res)) { ?>
               <h4 style="font-weight:bold;">Sudah Membayar</h4>
             <?php } else {
-              ?> <h4 style="font-weight:bold;">Belum Membayar</h4> <?php
-                                                                    }
-                                                                    ?>
+              ?> <h4 style="font-weight:bold;">Belum Membayar</h4>
+            <?php
+            }
+            ?>
           </div>
           <div class="col-6">
             <?php
             if (!empty($res)) { ?>
               <p>Dibayar pada tanggal <?= $res["tgl_transaksi"] ?></p>
-            <?php } else {
-              ?> <a href="/user/pembayaran/create.php" class="btn btn-success btn-block">Tambah Data</a> 
-            <?php
-            }
+            <?php } 
             ?>
           </div>
         </div>
       </div>
     </div>
-    <h4>Pembayaran Bulan Lainnya</h4>
-
+    <a href="/user/pembayaran/create.php" class="btn btn-success btn-block">Tambah Data</a>
+    <br>
+    <h6 class="text-center">Pembayaran Bulan Lainnya</h6>
     <div class="bulan-lain">
       <?php
       $findAllPembayaran = "SELECT * FROM pembayaran where id_anak_kos = $id";
@@ -102,13 +97,13 @@ if (isset($_GET["msg"])) {
           <div class="card-body">
             <div class="row">
               <div class="col-6">
-              <h4 style="font-weight:bold;">Sudah Membayar</h4>
+                <h4 style="font-weight:bold;">Sudah Membayar</h4>
               </div>
               <div class="col-6">
                 <p style="text-align:right;">Dibayar Pada Tanggal <?= $data["tgl_transaksi"] ?></p>
               </div>
             </div>
-            <a href="/user/pembayaran/show.php?id=<?= $data["id"]?>" class="btn btn-warning btn-block">Lihat Data</a>
+            <a href="/user/pembayaran/show.php?id=<?= $data["id"] ?>" class="btn btn-warning btn-block">Lihat Data</a>
           </div>
         </div>
       <?php }
