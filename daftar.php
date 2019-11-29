@@ -15,6 +15,8 @@
     $msg = "Data sudah ada. Silahkan Login.";
   } else if ($error == "2") {
     $msg = "Data Tidak Valid";
+  } else if ($error == "1452") {
+    $msg = "Kos Tidak Ada";
   } else {
     $msg = $error;
   }

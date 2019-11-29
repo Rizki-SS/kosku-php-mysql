@@ -80,37 +80,40 @@ if (isset($_GET["msg"])) {
     <br>
     <a href="/user/pembayaran/create.php" class="btn btn-success btn-block">Tambah Data</a>
     <br>
-    <div class="card">
-      <div class="card-header">
-        <span>Komplain</span>
-      </div>
-      <?php
-      $id = $user["id"];
-      $getDataKomplain = "SELECT * FROM komplain WHERE id_anak_kos = $id ORDER BY id DESC LIMIT 1; ";
-      $res = mysqli_query($conn, $getDataKomplain)->fetch_assoc();
+    <?php
+    $id = $user["id"];
+    $getDataKomplain = "SELECT * FROM komplain WHERE id_anak_kos = $id ORDER BY id DESC LIMIT 1; ";
+    $res = mysqli_query($conn, $getDataKomplain)->fetch_assoc();
+    if ($res) {
       ?>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-1">1</div>
-          <div class="col-7">
-            <h4 style="font-weight:bold;"><?= $res["judul"] ?></h4>
-            <p><?= $res["deskripsi"] ?></p>
+      <div class="card">
+        <div class="card-header">
+          <span>Komplain</span>
+        </div>
+
+        <div class="card-body">
+          <div class="row">
+            <div class="col-1">1</div>
+            <div class="col-7">
+              <h4 style="font-weight:bold;"><?= $res["judul"] ?></h4>
+              <p><?= $res["deskripsi"] ?></p>
+            </div>
+            <?php
+              $selesai = $res["selesai"] + 1;
+              if ($selesai == 2) { ?>
+              <div class="col-3">
+                <img src="/assets/success.svg" style="width: 40px; height:40px; float:right">
+              </div>
+            <?php } else if ($selesai  == 1) { ?>
+              <div class="col-3">
+                <img src="/assets/error.svg" style="width: 40px; height:40px; float:right">
+              </div>
+            <?php }
+              ?>
           </div>
-          <?php
-          $selesai = $res["selesai"] + 1;
-          if ($selesai == 2) { ?>
-            <div class="col-3">
-              <img src="/assets/success.svg" style="width: 40px; height:40px; float:right">
-            </div>
-          <?php } else if ($selesai  == 1) { ?>
-            <div class="col-3">
-              <img src="/assets/error.svg" style="width: 40px; height:40px; float:right">
-            </div>
-          <?php }
-          ?>
         </div>
       </div>
-    </div>
+    <?php } ?>
     <br>
   </div>
 </body>

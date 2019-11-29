@@ -13,8 +13,13 @@ if (isset($_POST["submit"])) {
   $lembaga = $_POST["lembaga"];
 
   if (
-    empty($nama) || empty($asal) || empty($hp) || empty($tipe)
-    || empty($status) || empty($lembaga)
+    empty($name) || !preg_match("/^[A-Za-z0-9_-]*$/", $name) ||
+    empty($asal) || !preg_match("/^[A-Za-z0-9_-]*$/", $asal) ||
+    empty($hp) || !preg_match("/^[A-Za-z0-9_-]*$/", $hp) ||
+    empty($status) || !preg_match("/^[A-Za-z0-9_-]*$/", $status) ||
+    empty($lembaga) || !preg_match("/^[A-Za-z0-9_-]*$/", $lembaga) ||
+    empty($idKos) || !preg_match("/^[A-Za-z0-9_-]*$/", $idKos) ||
+    empty($tipe) || !preg_match("/^[A-Za-z0-9_-]*$/", $tipe)
   ) {
     header("location: /admin/data_pengguna/create.php?error=2&id=$id");
   } else {
@@ -30,13 +35,11 @@ if (isset($_POST["submit"])) {
 
     // Apakah Kamar Sudah Penuh
     // 1. Menghitung jumlah kamar yang terisi
-    $count = "select count(*) as inserted from anak_kos ak
+    $count = "select * from anak_kos ak
     inner join kos k on ak.id_kos = k.id
     where k.id=$id;";
-    $countOutput = mysqli_query($conn, $count);
-    $inserted = $countOutput->fetch_assoc();
-    $inserted = (int) $inserted["inserted"];
-    echo $inserted;
+    $countOutput = mysqli_query($conn, $count)->num_rows();
+    echo $countOutput;
 
     //2. Mengambil data jumlah kamar pada tabel kos
     $max = "select kos_user from kos where id = $id";

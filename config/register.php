@@ -7,9 +7,9 @@ if (isset($_POST["daftar"])) {
     $username = $_POST["username"];
     $password = $password = md5($_POST["password"]);
 
-    if (empty($name) || !preg_match("/^[A-Za-z0-9_-]*$/", $name) ||
-    empty($password) || !preg_match("/^[A-Za-z0-9_-]*$/", $password) ||
-    empty($username) || !preg_match("/^[A-Za-z0-9_-]*$/", $username)
+    if (empty($name) || !preg_match("/^[A-Za-z0-9 ._-]*$/", $name) ||
+    empty($password) || !preg_match("/^[A-Za-z0-9 ._-]*$/", $password) ||
+    empty($username) || !preg_match("/^[A-Za-z0-9 ._-]*$/", $username)
     ) {
       header("location: /daftar.php?error=2");
     } else {
@@ -44,13 +44,13 @@ if (isset($_POST["daftar"])) {
     $password = md5($_POST["password"]);
 
     if (
-      empty($name) || !preg_match("/^[A-Za-z0-9_-]*$/", $name) ||
-      empty($asal) || !preg_match("/^[A-Za-z0-9_-]*$/", $asal) ||
-      empty($hp) || !preg_match("/^[A-Za-z0-9_-]*$/", $hp) ||
-      empty($status) || !preg_match("/^[A-Za-z0-9_-]*$/", $status) ||
-      empty($lembaga) || !preg_match("/^[A-Za-z0-9_-]*$/", $lembaga) ||
-      empty($idKos) || !preg_match("/^[A-Za-z0-9_-]*$/", $idKos) ||
-      empty($username) || !preg_match("/^[A-Za-z0-9_-]*$/", $username) ||
+      empty($name) || !preg_match("/^[A-Za-z0-9 ._-]*$/", $name) ||
+      empty($asal) || !preg_match("/^[A-Za-z0-9 ._-]*$/", $asal) ||
+      empty($hp) || !preg_match("/^[A-Za-z0-9 ._-]*$/", $hp) ||
+      empty($status) || !preg_match("/^[A-Za-z0-9 ._-]*$/", $status) ||
+      empty($lembaga) || !preg_match("/^[A-Za-z0-9 ._-]*$/", $lembaga) ||
+      empty($idKos) || !preg_match("/^[A-Za-z0-9 ._-]*$/", $idKos) ||
+      empty($username) || !preg_match("/^[A-Za-z0-9 ._-]*$/", $username) ||
       empty($password) ||
       empty($tipe) || !preg_match("/^[A-Za-z0-9_-]*$/", $tipe)
     ) {
@@ -60,7 +60,7 @@ if (isset($_POST["daftar"])) {
       $dupUser = mysqli_query($conn, $findUser);
       $dupUser = $dupUser->fetch_assoc();
       if (!empty($dupUser)) {
-        header("location: daftar.php?error=1");
+        header("location: /daftar.php?error=1");
       } else {
         $tipe = $tipe - 1;
 
@@ -71,7 +71,7 @@ if (isset($_POST["daftar"])) {
         mysqli_query($conn, $insert);
 
         if (mysqli_error($conn)) {
-          header("location: daftar.php?error=" . mysqli_error($conn));
+          header("location: /daftar.php?error=" . mysqli_errno($conn));
         } else {
           header("location: /login.php");
         }

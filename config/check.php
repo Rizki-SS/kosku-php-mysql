@@ -7,8 +7,8 @@ if (isset($_POST["submit"])) {
   $password = md5($_POST["password"]);
 
   if (
-    empty($username) || !preg_match("/^[A-Za-z0-9_-]*$/", $username) ||
-    empty($password) || !preg_match("/^[A-Za-z0-9_-]*$/", $password)
+    empty($username) || !preg_match("/^[A-Za-z0-9 ._-]*$/", $username) ||
+    empty($password) || !preg_match("/^[A-Za-z0-9 ._-]*$/", $password)
   ) {
     header("location: /login.php?error=2");
   }
@@ -34,7 +34,7 @@ if (isset($_POST["submit"])) {
     $res = mysqli_query($conn, $findUser);
     $user = mysqli_fetch_assoc($res);
     if ($user["username"] == $username) {
-      if (password_verify($password, $user["password"])) {
+      if ($password == $user["password"]) {
         session_start();
         $_SESSION["user"] = $user;
         header("location: /user/index.php");
