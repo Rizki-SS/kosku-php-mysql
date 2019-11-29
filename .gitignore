@@ -1,1 +1,2 @@
-config/conn.php
+# Git Ignore
+./config/conn.php
