@@ -4,14 +4,22 @@ if (isset($_POST["submit"])) {
   include($dir . '/config/conn.php');
 
   $username = $_POST["username"];
-  $password = $_POST["password"];
+  $password = md5($_POST["password"]);
+
+  if (
+    empty($username) || !preg_match("/^[A-Za-z0-9_-]*$/", $username) ||
+    empty($password) || !preg_match("/^[A-Za-z0-9_-]*$/", $password)
+  ) {
+    header("location: /login.php?error=2");
+  }
+
   $findAdmin = "SELECT * FROM admin WHERE username='$username';";
   $res = mysqli_query($conn, $findAdmin);
   $admin = mysqli_fetch_assoc($res);
 
   if (!empty($admin)) {
     if ($admin["username"] == $username) {
-      if (password_verify($password, $admin["password"])) {
+      if ($password == $admin["password"]) {
         session_start();
         $_SESSION["admin"] = $admin;
         header("location: /admin/index.php");
@@ -27,9 +35,6 @@ if (isset($_POST["submit"])) {
     $user = mysqli_fetch_assoc($res);
     if ($user["username"] == $username) {
       if (password_verify($password, $user["password"])) {
-        $findUser = "SELECT * FROM anak_kos WHERE username='$username';";
-        $res = mysqli_query($conn, $findUser);
-        $user = mysqli_fetch_assoc($res);
         session_start();
         $_SESSION["user"] = $user;
         header("location: /user/index.php");

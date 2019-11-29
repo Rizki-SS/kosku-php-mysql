@@ -5,23 +5,26 @@ if (isset($_POST["daftar"])) {
   if ($_POST["tipeUser"] == "pemilikKos") {
     $name = $_POST["name"];
     $username = $_POST["username"];
-    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $password = $password = md5($_POST["password"]);
 
-    if (empty($name) || empty($password) || empty($username)) {
-      header("location: daftar.php?error=2");
+    if (empty($name) || !preg_match("/^[A-Za-z0-9_-]*$/", $name) ||
+    empty($password) || !preg_match("/^[A-Za-z0-9_-]*$/", $password) ||
+    empty($username) || !preg_match("/^[A-Za-z0-9_-]*$/", $username)
+    ) {
+      header("location: /daftar.php?error=2");
     } else {
       $findUsername = "SELECT * FROM admin WHERE username='$username';";
       $res = mysqli_query($conn, $findUsername);
       $data = mysqli_fetch_assoc($res);
 
       if (!empty($data)) {
-        header("location: daftar.php?error=1");
+        header("location: /daftar.php?error=1");
       } else {
         $insert = "INSERT INTO admin values (NULL, '$name','$username', '$password');";
         $res = mysqli_query($conn, $insert);
         if (mysqli_error($conn)) {
           $error = mysqli_error($conn);
-          header("location: daftar.php?error=$error");
+          header("location: /daftar.php?error=$error");
         } else {
           $findId = "SELECT id FROM admin where username='$username'";
           $id = mysqli_fetch_assoc(mysqli_query($conn, $findId));
@@ -38,18 +41,18 @@ if (isset($_POST["daftar"])) {
     $tipe = $_POST["tipeKamar"];
     $idKos = $_POST["id_kos"];
     $username = $_POST["username"];
-    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $password = md5($_POST["password"]);
 
     if (
-      empty($name) ||
-      empty($asal) ||
-      empty($hp) ||
-      empty($status) ||
-      empty($lembaga) ||
-      empty($idKos) ||
-      empty($username) ||
+      empty($name) || !preg_match("/^[A-Za-z0-9_-]*$/", $name) ||
+      empty($asal) || !preg_match("/^[A-Za-z0-9_-]*$/", $asal) ||
+      empty($hp) || !preg_match("/^[A-Za-z0-9_-]*$/", $hp) ||
+      empty($status) || !preg_match("/^[A-Za-z0-9_-]*$/", $status) ||
+      empty($lembaga) || !preg_match("/^[A-Za-z0-9_-]*$/", $lembaga) ||
+      empty($idKos) || !preg_match("/^[A-Za-z0-9_-]*$/", $idKos) ||
+      empty($username) || !preg_match("/^[A-Za-z0-9_-]*$/", $username) ||
       empty($password) ||
-      empty($tipe)
+      empty($tipe) || !preg_match("/^[A-Za-z0-9_-]*$/", $tipe)
     ) {
       header("location: /daftar.php?error=2");
     } else {

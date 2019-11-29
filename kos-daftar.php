@@ -11,7 +11,13 @@ if (isset($_POST["daftar"])) {
   $kamarMandiLuar = $_POST["kamarMandiLuar"];
   $id = $_POST["id"];
 
-  if (empty($nama) || empty($alamat) || empty($jumlahKamar) || empty($id)) {
+  if (empty($nama) || !preg_match("/^[A-Za-z0-9_-]*$/", $nama) ||
+    empty($alamat) || !preg_match("/^[A-Za-z0-9_-]*$/", $alamat) ||
+    empty($jumlahKamar) || !preg_match("/^[A-Za-z0-9_-]*$/", $jumlahKamar) ||
+    empty($id) || !preg_match("/^[A-Za-z0-9_-]*$/", $id) ||
+    empty($kamarMandiDalam) || !preg_match("/^[A-Za-z0-9_-]*$/", $kamarMandiDalam) ||
+    empty($kamarMandiLuar) || !preg_match("/^[A-Za-z0-9_-]*$/", $kamarMandiLuar)
+  ) {
     header("location: /kos-daftar.php?error=2");
   } else {
     $insert = "INSERT INTO kos values (NULL, '$nama', '$alamat', $id, $jumlahKamar, $kamarMandiDalam, $kamarMandiLuar);";
