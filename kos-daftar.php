@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 <html>
 
 <head>
@@ -77,10 +81,10 @@
           <input type="text" name="alamat" class="form-control" id="alamat" placeholder="Alamat Kos" /><br />
           <label for="jumlahKamar">Jumlah Kamar</label>
           <input type="text" name="jumlahkamar" class="form-control" id="jumlahKamar" placeholder="Jumlah Kamar" /><br />
-          <label for="kamarMandiDalam">Harga Kamar Mandi Dalam</label>
-          <input type="text" name="kamarMandiDalam" class="form-control" id="kamarMandiDalam" placeholder="Harga Kamar Mandi Dalam" /><br />
           <label for="kamarMandiLuar">Harga Kamar Mandi Luar</label>
           <input type="text" name="kamarMandiLuar" class="form-control" id="kamarMandiLuar" placeholder="Harga Kamar Mandi Luar" /><br />
+          <label for="kamarMandiDalam">Harga Kamar Mandi Dalam</label>
+          <input type="text" name="kamarMandiDalam" class="form-control" id="kamarMandiDalam" placeholder="Harga Kamar Mandi Dalam" /><br />
           <input type="hidden" name="id" value="<?= $_GET['id'] ?>" />
           <br />
           <input type="submit" name="daftar" value="Daftar" class="btn btn-dark" />
