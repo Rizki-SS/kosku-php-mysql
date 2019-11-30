@@ -7,10 +7,10 @@ $admin = $_SESSION["admin"];
 session_abort();
 
 if (isset($_POST["submit"])) {
-  $id = $_POST["id"];
-  $name = $_POST["nama"];
-  $username = $_POST["username"];
-  $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+  $id = filter_var($_POST["id"], FILTER_SANITIZE_STRING);
+  $name = filter_var($_POST["nama"], FILTER_SANITIZE_STRING);
+  $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
+  $password = md5($_POST["password"]);
 
   $updateAdmin = "UPDATE admin set name='$name', username='$username', password='$password' where id=$id";
   mysqli_query($conn, $updateAdmin);

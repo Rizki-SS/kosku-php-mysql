@@ -4,9 +4,9 @@ include($dir . "/config/conn.php");
 require_once($dir . "/admin/auth.php");
 
 if (isset($_POST["submit"])) {
-  $id = $_POST["id"];
-  $judul = $_POST["judul"];
-  $deskripsi = $_POST["deskripsi"];
+  $id = filter_var($_POST["id"], FILTER_SANITIZE_STRING);
+  $judul = filter_var($_POST["judul"], FILTER_SANITIZE_STRING);
+  $deskripsi = filter_var($_POST["deskripsi"], FILTER_SANITIZE_STRING);
 
   if (empty($id) || empty($judul) || empty($deskripsi)) {
     header("location: /admin/komplain/create.php?error=2");

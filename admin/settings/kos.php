@@ -11,12 +11,12 @@ $res = mysqli_query($conn, $getKosData);
 $res = $res->fetch_assoc();
 
 if (isset($_POST["submit"])) {
-  $id = $_POST["id"];
-  $name = $_POST["nama"];
-  $address = $_POST["alamat"];
-  $jumlahKamar = $_POST["jumlah_kamar"];
-  $kamarMandiDalam = $_POST["kamarMandiDalam"];
-  $kamarMandiLuar = $_POST["kamarMandiLuar"];
+  $id = filter_var($_POST["id"], FILTER_SANITIZE_STRING);;
+  $name = filter_var($_POST["nama"], FILTER_SANITIZE_STRING);
+  $address = filter_var($_POST["alamat"], FILTER_SANITIZE_STRING);
+  $jumlahKamar = filter_var($_POST["jumlah_kamar"], FILTER_SANITIZE_STRING);
+  $kamarMandiDalam = filter_var($_POST["kamarMandiDalam"], FILTER_SANITIZE_STRING);
+  $kamarMandiLuar = filter_var($_POST["kamarMandiLuar"], FILTER_SANITIZE_STRING);
 
   $updateKos = "UPDATE kos set name='$name', address='$address', kos_user=$jumlahKamar, harga_kamar_mandi_dalam=$kamarMandiDalam, harga_kamar_mandi_luar=$kamarMandiLuar where id=$id";
   mysqli_query($conn, $updateKos);

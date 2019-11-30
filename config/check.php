@@ -3,8 +3,8 @@ if (isset($_POST["submit"])) {
   $dir = $_SERVER['DOCUMENT_ROOT'];
   include($dir . '/config/conn.php');
 
-  $username = $_POST["username"];
-  $password = $_POST["password"];
+  $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
+  $password = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
   $findAdmin = "SELECT * FROM admin WHERE username='$username';";
   $res = mysqli_query($conn, $findAdmin);
   $admin = mysqli_fetch_assoc($res);

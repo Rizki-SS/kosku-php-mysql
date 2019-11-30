@@ -1,31 +1,3 @@
-<?php
-$dir = $_SERVER["DOCUMENT_ROOT"];
-include($dir . "/config/conn.php");
-
-if (isset($_POST["daftar"])) {
-
-  $nama = $_POST["nama"];
-  $alamat = $_POST["alamat"];
-  $jumlahKamar = $_POST["jumlahkamar"];
-  $kamarMandiDalam = $_POST["kamarMandiDalam"];
-  $kamarMandiLuar = $_POST["kamarMandiLuar"];
-  $id = $_POST["id"];
-
-  if (empty($nama) || empty($alamat) || empty($jumlahKamar) || empty($id)) {
-    header("location: /kos-daftar.php?error=2");
-  } else {
-    $insert = "INSERT INTO kos values (NULL, '$nama', '$alamat', $id, $jumlahKamar, $kamarMandiDalam, $kamarMandiLuar);";
-    mysqli_query($conn, $insert);
-
-    if (mysqli_error($conn)) {
-      $error = $error . mysqli_error($conn);
-      header("location: /kos-daftar.php?error=$error&id=$id");
-    } else {
-      header("location: /login.php");
-    }
-  }
-}
-?>
 <html>
 
 <head>
@@ -98,7 +70,7 @@ if (isset($_POST["daftar"])) {
         <?php
         }
         ?>
-        <form action="/kos-daftar.php" class="form-group" method="POST">
+        <form action="/config/kosRegister.php" class="form-group" method="POST">
           <label for="nama">Nama Kos</label>
           <input type="text" name="nama" class="form-control" id="name" placeholder="Nama Kos" /><br />
           <label for="alamat">Alamat Kos</label>

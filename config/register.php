@@ -3,9 +3,9 @@ $dir = $_SERVER["DOCUMENT_ROOT"];
 include($dir . "/config/conn.php");
 if (isset($_POST["daftar"])) {
   if ($_POST["tipeUser"] == "pemilikKos") {
-    $name = $_POST["name"];
-    $username = $_POST["username"];
-    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $name = filter_var($_POST["name"], FILTER_SANITIZE_STRING);
+    $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
+    $password = md5($_POST["password"]);
 
     if (empty($name) || empty($password) || empty($username)) {
       header("location: daftar.php?error=2");
@@ -30,15 +30,15 @@ if (isset($_POST["daftar"])) {
       }
     }
   } else if ($_POST["tipeUser"] == "anakKos") {
-    $name = $_POST["name"];
-    $asal = $_POST["asal"];
-    $hp = $_POST["hp"];
-    $status = $_POST["status"];
-    $lembaga = $_POST["lembaga"];
-    $tipe = $_POST["tipeKamar"];
-    $idKos = $_POST["id_kos"];
-    $username = $_POST["username"];
-    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $name = filter_var($_POST["name"], FILTER_SANITIZE_STRING);
+    $asal = filter_var($_POST["asal"], FILTER_SANITIZE_STRING);
+    $hp = filter_var($_POST["hp"], FILTER_SANITIZE_STRING);
+    $status = filter_var($_POST["status"], FILTER_SANITIZE_STRING);
+    $lembaga = filter_var($_POST["lembaga"], FILTER_SANITIZE_STRING);
+    $tipe = filter_var($_POST["tipeKamar"], FILTER_SANITIZE_STRING);
+    $idKos = filter_var($_POST["id_kos"], FILTER_SANITIZE_STRING);
+    $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
+    $password = md5($_POST["password"]);
 
     if (
       empty($name) ||

@@ -6,9 +6,9 @@ require_once($dir . "/admin/auth.php");
 if (empty($_POST["bulan"]) || empty($_POST["tahun"]) || empty($_POST["id"])) {
   header("location: /admin/pembayaran/create.php?error=2");
 } else {
-  $id = $_POST["id"];
-  $bulan = $_POST["bulan"];
-  $tahun = $_POST["tahun"];
+  $id = filter_var($_POST["id"], FILTER_SANITIZE_STRING);
+  $bulan = filter_var($_POST["bulan"], FILTER_SANITIZE_STRING);
+  $tahun = filter_var($_POST["tahun"], FILTER_SANITIZE_STRING);
 
   $insertPembayaran = "INSERT INTO pembayaran values(NULL, $id, $bulan, $tahun, NOW());";
 

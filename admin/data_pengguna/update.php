@@ -6,13 +6,13 @@ require_once($dir . "/admin/auth.php");
 
 
 if (isset($_POST["submit"])) {
-  $nama = $_POST["nama"];
-  $asal = $_POST["asal"];
-  $hp = $_POST["nohp"];
-  $tipe = $_POST["tipe"];
-  $id = $_POST["id"];
-  $status = $_POST["status"];
-  $lembaga = $_POST["lembaga"];
+  $nama = filter_var($_POST["nama"], FILTER_SANITIZE_STRING);
+  $asal = filter_var($_POST["asal"], FILTER_SANITIZE_STRING);
+  $hp = filter_var($_POST["nohp"], FILTER_SANITIZE_STRING);
+  $tipe = filter_var($_POST["tipe"], FILTER_SANITIZE_STRING);
+  $id = filter_var($_POST["id"], FILTER_SANITIZE_STRING);
+  $status = filter_var($_POST["status"], FILTER_SANITIZE_STRING);
+  $lembaga = filter_var($_POST["lembaga"], FILTER_SANITIZE_STRING);
 
   if (empty($nama) || empty($asal) || empty($hp) || empty($tipe) || $tipe == "0") {
     header("location: /admin/data_pengguna/edit.php?error=2&id=$id");
