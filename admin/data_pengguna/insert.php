@@ -13,13 +13,13 @@ if (isset($_POST["submit"])) {
   $lembaga = filter_var($_POST["lembaga"], FILTER_SANITIZE_STRING);
 
   if (
-    empty($name) || !preg_match("/^[A-Za-z0-9_-]*$/", $name) ||
-    empty($asal) || !preg_match("/^[A-Za-z0-9_-]*$/", $asal) ||
-    empty($hp) || !preg_match("/^[A-Za-z0-9_-]*$/", $hp) ||
-    empty($status) || !preg_match("/^[A-Za-z0-9_-]*$/", $status) ||
-    empty($lembaga) || !preg_match("/^[A-Za-z0-9_-]*$/", $lembaga) ||
-    empty($idKos) || !preg_match("/^[A-Za-z0-9_-]*$/", $idKos) ||
-    empty($tipe) || !preg_match("/^[A-Za-z0-9_-]*$/", $tipe)
+    empty($name) || 
+    empty($asal) || 
+    empty($hp) || 
+    empty($status) || 
+    empty($lembaga) || 
+    empty($idKos) || 
+    empty($tipe)
   ) {
     header("location: /admin/data_pengguna/create.php?error=2&id=$id");
   } else {
