@@ -33,7 +33,7 @@ session_start();
         <!-- kanan -->
         <div class="dropdown">
           <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <?= $_SESSION["admin"]["name"] ?>
+            <?= $_SESSION["admin"]?>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="/admin/settings/admin.php">Akun</a>

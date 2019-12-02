@@ -3,12 +3,12 @@ $dir = $_SERVER["DOCUMENT_ROOT"];
 include($dir . "/config/conn.php");
 require_once($dir . "/admin/auth.php");
 session_start();
-$id = $_SESSION["admin"]["id"];
+$username = $_SESSION["admin"];
 session_abort();
 $getAnakKosData = "select ak.id, ak.nama, ak.asal, ak.hp, ak.tipe from anak_kos ak
 inner join kos k on ak.id_kos = k.id
 inner join admin a on k.admin_id = a.id
-where a.id = $id";
+where a.username = $username";
 
 $getKosId = "select id from kos where admin_id = $id";
 $kosId = mysqli_query($conn, $getKosId)->fetch_assoc();

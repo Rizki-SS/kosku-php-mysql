@@ -6,7 +6,7 @@ session_start();
 $admin = $_SESSION["admin"];
 session_abort();
 
-$getKosData = "SELECT * FROM kos where admin_id=$admin[id]";
+$getKosData = "SELECT * FROM kos where admin_id=$admin";
 $res = mysqli_query($conn, $getKosData);
 $res = $res->fetch_assoc();
 

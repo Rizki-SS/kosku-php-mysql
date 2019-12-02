@@ -22,7 +22,9 @@ if (isset($_POST["submit"])) {
     if ($admin["username"] == $username) {
       if ($password == $admin["password"]) {
         session_start();
-        $_SESSION["admin"] = $admin;
+        $_SESSION["admin"] = $admin["username"];
+        setcookie("admin", $admin["username"], time() + 86400);
+        $_SESSION["name"] = $admin["name"];
         header("location: /admin/index.php");
       } else {
         header("location: /login.php?error=2");

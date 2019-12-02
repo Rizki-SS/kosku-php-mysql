@@ -3,7 +3,7 @@ $dir = $_SERVER["DOCUMENT_ROOT"];
 include($dir . "/admin/auth.php");
 include($dir . "/config/conn.php");
 session_start();
-$admin = $_SESSION["admin"];
+$username = $_SESSION["admin"];
 session_abort();
 
 if (isset($_POST["submit"])) {
@@ -12,7 +12,7 @@ if (isset($_POST["submit"])) {
   $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
   $password = md5($_POST["password"]);
 
-  $updateAdmin = "UPDATE admin set name='$name', username='$username', password='$password' where id=$id";
+  $updateAdmin = "UPDATE admin set name='$name', username='$username' password='$password' where username='$username'";
   mysqli_query($conn, $updateAdmin);
 
   if (mysqli_error($conn)) {
@@ -38,11 +38,14 @@ mysqli_close($conn);
   <div class="container" style="margin-top: 100px;">
     <h1>Pengaturan Akun</h1>
 
+    <?php 
+    $findData = "SELECT * FROM admin where username = $username;";
+    $admin = mysqli_query($conn, $findData)->fetch_assoc();
+    ?>
+
     <form action="/admin/settings/admin.php" method="post">
       <div class="row">
         <div class="col-lg-6">
-          <label for="id">ID</label><br />
-          <input type="text" name="id" id="id" class="form-control" value="<?= $admin["id"] ?>" readonly /><br />
           <label for="nama">Nama</label><br />
           <input type="text" name="nama" id="nama" class="form-control" value="<?= $admin["name"] ?>" /><br />
         </div>

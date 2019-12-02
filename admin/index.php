@@ -3,7 +3,7 @@ $dir = $_SERVER["DOCUMENT_ROOT"];
 include($dir . "/admin/auth.php");
 include($dir . "/config/conn.php");
 session_start();
-$admin = $_SESSION["admin"];
+$username = $_SESSION["admin"];
 session_abort();
 
 if (isset($_GET["msg"])) {
@@ -35,7 +35,7 @@ if (isset($_GET["msg"])) {
   <?php include($dir . "/templates/navbar.php") ?>
   <div class="container">
     hello, <br />
-    <h1><b><?= $admin["name"] ?></b></h1>
+    <h1><b><?= $username ?></b></h1>
     <br>
     <?php
     if (!empty($msg)) {
@@ -55,7 +55,7 @@ if (isset($_GET["msg"])) {
             $count = "select count(*) as inserted from anak_kos ak
                   inner join kos k on ak.id_kos = k.id
                   inner join admin a on k.admin_id = a.id
-                  where a.id=$admin[id];";
+                  where a.username='$username';";
             $countOutput = mysqli_query($conn, $count);
             $inserted = $countOutput->fetch_assoc();
             $inserted = (int) $inserted["inserted"];
@@ -63,7 +63,7 @@ if (isset($_GET["msg"])) {
             //2. Mengambil data jumlah kamar pada tabel kos
             $max = "select kos_user from kos k
             inner join admin a on k.admin_id = a.id
-            where a.id = $admin[id]";
+            where a.username = '$username'";
             $MaxOutput = mysqli_query($conn, $max);
             $MaxOutput = mysqli_fetch_assoc($MaxOutput);
             $max = (int) $MaxOutput["kos_user"];
@@ -79,7 +79,7 @@ if (isset($_GET["msg"])) {
         inner join pembayaran p on ak.id = p.id_anak_kos
         inner join kos k on ak.id_kos = k.id
         inner join admin a on k.admin_id = a.id
-        where a.id = $admin[id] and p.bulan = MONTH(NOW()) and p.tahun = YEAR(NOW())";
+        where a.username = '$username' and p.bulan = MONTH(NOW()) and p.tahun = YEAR(NOW())";
 
         $data = mysqli_query($conn, $getDataPembayaran)->fetch_assoc();
 
