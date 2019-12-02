@@ -52,7 +52,7 @@ if (isset($_POST["daftar"])) {
       empty($idKos) || 
       empty($username) || 
       empty($password) ||
-      empty($tipe) || 
+      empty($tipe)
     ) {
       header("location: /daftar.php?error=2");
     } else {
