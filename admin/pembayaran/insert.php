@@ -10,7 +10,7 @@ if (empty($_POST["bulan"]) || empty($_POST["tahun"]) || empty($_POST["id"])) {
   $bulan = filter_var($_POST["bulan"], FILTER_SANITIZE_STRING);
   $tahun = filter_var($_POST["tahun"], FILTER_SANITIZE_STRING);
 
-  $insertPembayaran = "INSERT INTO pembayaran values(NULL, $id, $bulan, $tahun, NOW());";
+  $insertPembayaran = "INSERT INTO pembayaran values(NULL, $id, $bulan, $tahun, NOW(), 2);";
 
   mysqli_query($conn, $insertPembayaran);
   if (mysqli_error($conn)) {

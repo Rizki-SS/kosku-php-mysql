@@ -8,7 +8,7 @@ session_abort();
 if (isset($_GET["bulan"]) && isset($_GET["tahun"])) {
   $bulan = $_GET["bulan"];
   $tahun = $_GET["tahun"];
-  $getDataPembayaran = "select p.id, ak.id as id_anak_kos, nama, tipe, case
+  $getDataPembayaran = "select p.id, ak.id as id_anak_kos, nama, tipe, p.verified case
   when tipe = 0
     then k.harga_kamar_mandi_dalam
     else k.harga_kamar_mandi_luar
@@ -16,7 +16,7 @@ if (isset($_GET["bulan"]) && isset($_GET["tahun"])) {
   tgl_transaksi 
   from anak_kos ak
   left join (
-    select id, id_anak_kos, tgl_transaksi, bulan, tahun 
+    select id, id_anak_kos, tgl_transaksi, bulan, tahun, verfied 
     from pembayaran 
     where bulan = $bulan 
     and tahun = $tahun) as p
@@ -25,7 +25,7 @@ if (isset($_GET["bulan"]) && isset($_GET["tahun"])) {
   inner join admin a on k.admin_id = a.id
   where a.id = $id";
 } else {
-  $getDataPembayaran = "select p.id, ak.id as id_anak_kos, nama, tipe,
+  $getDataPembayaran = "select p.id, ak.id as id_anak_kos, nama, tipe, verified, 
   case
   when tipe = 0
   then k.harga_kamar_mandi_dalam
@@ -33,7 +33,7 @@ if (isset($_GET["bulan"]) && isset($_GET["tahun"])) {
 end as tagihan,
 tgl_transaksi from anak_kos ak
   left join (
-      select id, id_anak_kos, tgl_transaksi 
+      select id, id_anak_kos, tgl_transaksi, verified 
       from pembayaran 
       where bulan = MONTH(NOW()) 
         and tahun = YEAR(NOW())) as p
@@ -51,6 +51,8 @@ if (isset($_GET["msg"])) {
   $msg = $_GET["msg"];
   if ($msg == "insert_ok") {
     $msg = "Data Berhasil Disimpan";
+  }else if($msg == "verify_ok"){
+    $msg = "Data Berhasil Diverifikasi";
   }
 }
 
@@ -140,6 +142,10 @@ mysqli_close($conn);
               <?php
                 if (empty($users["tgl_transaksi"])) { ?>
                 <a href="/admin/pembayaran/create.php?id=<?= $users["id_anak_kos"] ?>" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</a>
+              <?php } else if($users["verified"] == 1) { ?>
+                <button data-id="<?= $users["id"] ?>" data-toggle="modal" data-target="#verifyModal" class="btn btn-primary verify">
+                  Verifikasi
+                </button>
               <?php } else { ?>
                 <a href="/admin/pembayaran/edit.php?id=<?= $users["id"] ?>" class="btn btn-light"><i class="fa fa-edit"></i> Ubah</a>
               <?php } ?>
@@ -149,6 +155,37 @@ mysqli_close($conn);
       </tbody>
     </table>
   </div>
+  <div class="modal fade" id="verifyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Verifikasi Data</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Apakah anda yakin anak ini sudah bayar?
+        </div>
+        <div class="modal-footer">
+          <form action="/admin/pembayaran/verify.php" method="get">
+            <input type="text" name="verify_id" id="delete_id">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Ga Jadi Deh..</button>
+            <button type="submit" class="btn btn-danger" id="hapusAja">Ya</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
+<script>
+  $(document).ready(function () {
+    $('.verify').click(function() {
+      var ID = $(this).data('id');
+      console.log(ID);
+      $("#delete_id").val(ID);
+    });
+  });
+</script>
 
 </html>
