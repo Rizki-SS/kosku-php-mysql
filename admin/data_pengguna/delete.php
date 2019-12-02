@@ -14,3 +14,5 @@ try {
 } catch (\Throwable $th) {
   header("location: /admin/data_pengguna/index.php?msg=$th");
 }
+
+mysqli_close($conn);

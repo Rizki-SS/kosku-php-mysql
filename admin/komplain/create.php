@@ -15,6 +15,8 @@ if (isset($_GET["error"])) {
 } else {
   $error = "";
 }
+
+mysqli_close($conn);
 ?>
 
 <html>

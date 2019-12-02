@@ -7,6 +7,7 @@ $id = $_GET["id"];
 $findData = "SELECT * FROM anak_kos where id=$id";
 
 $data = mysqli_query($conn, $findData)->fetch_assoc();
+mysqli_close($conn);
 ?>
 
 <html>

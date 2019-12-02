@@ -6,6 +6,7 @@ require_once($dir . "/admin/auth.php");
 $userId = $_GET["id"];
 $getData = "SELECT * FROM anak_kos where id=$userId;";
 $data = mysqli_query($conn, $getData)->fetch_assoc();
+mysqli_close($conn);
 
 if (mysqli_error($conn)) {
   echo mysqli_error($conn);

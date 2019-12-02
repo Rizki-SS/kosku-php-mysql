@@ -102,3 +102,4 @@ mysqli_query($conn, "create table pembayaran
 echo mysqli_error($conn);
 
 echo "Migrations OK";
+mysqli_close($conn);

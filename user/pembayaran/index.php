@@ -107,6 +107,7 @@ if (isset($_GET["msg"])) {
           </div>
         </div>
       <?php }
+      mysqli_close($conn);
       ?>
     </div>
   </div>

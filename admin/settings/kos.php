@@ -27,6 +27,7 @@ if (isset($_POST["submit"])) {
     header("location: /admin/index.php?msg=kos_update_ok");
   }
 }
+mysqli_close($conn);
 ?>
 
 <html>

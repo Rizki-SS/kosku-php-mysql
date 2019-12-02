@@ -20,3 +20,4 @@ if (empty($_POST["bulan"]) || empty($_POST["tahun"]) || empty($_POST["id"])) {
     header("location: /admin/pembayaran/index.php?msg=insert_ok");
   }
 }
+mysqli_close($conn);

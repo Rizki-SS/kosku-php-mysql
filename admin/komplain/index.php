@@ -23,6 +23,7 @@ order by km.id";
 }
 
 $komplains = mysqli_query($conn, $getDataKomplain);
+mysqli_close($conn);
 ?>
 <html>
 

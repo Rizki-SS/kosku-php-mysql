@@ -84,6 +84,7 @@ if (isset($_GET["msg"])) {
     $id = $user["id"];
     $getDataKomplain = "SELECT * FROM komplain WHERE id_anak_kos = $id ORDER BY id DESC LIMIT 1; ";
     $res = mysqli_query($conn, $getDataKomplain)->fetch_assoc();
+    mysqli_close($conn);
     if ($res) {
       ?>
       <div class="card">

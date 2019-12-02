@@ -11,6 +11,7 @@ inner join admin a on k.admin_id = a.id
 where a.id = $id";
 
 $res = mysqli_query($conn, $getAnakKosData);
+mysqli_close($conn);
 ?>
 
 <html>

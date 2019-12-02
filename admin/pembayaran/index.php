@@ -54,6 +54,7 @@ if (isset($_GET["msg"])) {
   }
 }
 
+mysqli_close($conn);
 ?>
 <html>
 

@@ -79,3 +79,4 @@ if (isset($_POST["daftar"])) {
     }
   }
 }
+mysqli_close($conn);

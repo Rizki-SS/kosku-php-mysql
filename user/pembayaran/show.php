@@ -7,6 +7,7 @@ $id = $_GET["id"];
 $findData = "SELECT * FROM pembayaran where id=$id";
 
 $data = mysqli_query($conn, $findData)->fetch_assoc();
+mysqli_close($conn);
 ?>
 
 <html>

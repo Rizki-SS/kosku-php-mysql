@@ -15,7 +15,7 @@ $kosId = mysqli_query($conn, $getKosId)->fetch_assoc();
 
 $res = mysqli_query($conn, $getAnakKosData);
 
-
+mysqli_close($conn);
 
 ?>
 <html>

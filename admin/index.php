@@ -82,6 +82,8 @@ if (isset($_GET["msg"])) {
         where a.id = $admin[id] and p.bulan = MONTH(NOW()) and p.tahun = YEAR(NOW())";
 
         $data = mysqli_query($conn, $getDataPembayaran)->fetch_assoc();
+
+        mysqli_close($conn);
         ?>
         <div class="card">
           <div class="card-body">

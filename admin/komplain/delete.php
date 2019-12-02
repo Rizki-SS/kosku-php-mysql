@@ -13,3 +13,4 @@ if (mysqli_error($conn)) {
 } else {
   header("location: /admin/komplain/index.php?msg=delete_ok");
 }
+mysqli_close($conn);

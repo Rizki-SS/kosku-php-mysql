@@ -13,6 +13,7 @@ if (isset($_GET["showall"])) {
 }
 
 $komplains = mysqli_query($conn, $getDataKomplain);
+mysqli_close($conn);
 ?>
 <html>
 
