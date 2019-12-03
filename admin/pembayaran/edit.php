@@ -29,7 +29,7 @@ mysqli_close($conn);
 
   <script>
     $(document).ready(function() {
-      var id = <?= $data["id_anak_kos"] ?>
+      var id = <?= $data["id_anak_kos"] ?>;
       $("#<?= $data["id_anak_kos"] ?>").attr("selected", "selected");
     });
   </script>

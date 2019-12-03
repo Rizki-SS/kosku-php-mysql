@@ -19,7 +19,7 @@ mysqli_close($conn);
   <?php include($dir . "/templates/resources.php"); ?>
   <script>
     $(document).ready(function() {
-      var tipe = <?= $_GET["tipe"] + 1 ?>
+      var tipe = <?= $_GET["tipe"] + 1 ?>;
       console.log(tipe);
       $("#<?= $_GET["tipe"] + 1;?>").attr("selected", "selected");
     });
