@@ -92,7 +92,12 @@ mysqli_close($conn);
             <div class="col-sm-3">
               <h6><?= $komplain["tanggal"] ?></h6>
               <h6><?= $komplain["nama"] ?></h6>
-              <button data-toggle="modal" data-id="<?= $komplain["id"] ?>" data-target="#deleteModal" class="btn btn-light deleteData">Tandai Sudah Selesai</button>
+              <?php
+              if ($komplain["selesai"] == 0) { ?>
+                <button data-toggle="modal" data-id="<?= $komplain["id"] ?>" data-target="#deleteModal" class="btn btn-primary btn-raised deleteData">Tandai Sudah Selesai</button>
+              <?php
+              }
+              ?>
             </div>
           </div>
         </div>
@@ -117,8 +122,8 @@ mysqli_close($conn);
         <div class="modal-footer">
           <form action="/admin/komplain/delete.php" method="post">
             <input type="hidden" name="delete_id" id="delete_id">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Eh, Ternyata Belum</button>
-            <button type="submit" class="btn btn-success" id="hapusAja">Sudah Dong</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Eh, Ternyata Belum</button>
+            <button type="submit" class="btn btn-success btn-raised" id="hapusAja">Sudah Dong</button>
           </form>
         </div>
       </div>

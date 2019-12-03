@@ -77,13 +77,13 @@ mysqli_close($conn);
                   ?>
               </td>
               <td>
-                <a href="/admin/data_pengguna/view.php?id=<?= $users["id"] ?>" class="btn btn-primary">
-                  <i class="fa fa-eye"></i></a>
-                <a href="/admin/data_pengguna/edit.php?id=<?= $users["id"] ?>" class="btn btn-warning">
-                  <i class="fa fa-edit"></i></a>
-                <button data-id="<?= $users["id"] ?>" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger deleteData">
-                  <i class="fa fa-trash"></i>
-                </button>
+                <a href="/admin/data_pengguna/view.php?id=<?= $users["id"] ?>" class="btn btn-primary btn-raised">
+                  <i class="fa fa-eye"></i> Lihat</a>
+                <a href="/admin/data_pengguna/edit.php?id=<?= $users["id"] ?>" class="btn btn-warning btn-raised">
+                  <i class="fa fa-edit"></i> Ubah</a>
+                <a data-id="<?= $users["id"] ?>" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger btn-raised deleteData">
+                  <i class="fa fa-trash"></i> Hapus
+                </a>
               </td>
             </tr>
           <?php } ?>

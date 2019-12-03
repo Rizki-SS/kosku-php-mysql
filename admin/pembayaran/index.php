@@ -142,13 +142,13 @@ mysqli_close($conn);
             <td>
               <?php
                 if (empty($users["tgl_transaksi"])) { ?>
-                <a href="/admin/pembayaran/create.php?id=<?= $users["id_anak_kos"] ?>" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</a>
+                <a href="/admin/pembayaran/create.php?id=<?= $users["id_anak_kos"] ?>" class="btn btn-success btn-raised"><i class="fa fa-plus"></i> Tambah</a>
               <?php } else if($users["verified"] == 1) { ?>
                 <button data-id="<?= $users["id"] ?>" data-toggle="modal" data-target="#verifyModal" class="btn btn-primary verify">
                   Verifikasi
                 </button>
               <?php } else { ?>
-                <a href="/admin/pembayaran/edit.php?id=<?= $users["id"] ?>" class="btn btn-light"><i class="fa fa-edit"></i> Ubah</a>
+                <a href="/admin/pembayaran/edit.php?id=<?= $users["id"] ?>" class="btn btn-dark"><i class="fa fa-edit"></i> Ubah</a>
               <?php } ?>
             </td>
           </tr>
