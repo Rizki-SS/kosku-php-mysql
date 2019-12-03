@@ -62,7 +62,7 @@ session_start();
 
         <!-- kanan -->
         <div class="dropdown">
-          <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-dark dropdown-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <?= $_SESSION["user"]["nama"] ?>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

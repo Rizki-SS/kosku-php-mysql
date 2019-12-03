@@ -8,7 +8,7 @@ session_abort();
 if (!empty($_GET["bulan"]) && !empty($_GET["tahun"])) {
   $bulan = $_GET["bulan"];
   $tahun = $_GET["tahun"];
-  $getDataPembayaran = "select p.id, ak.id as id_anak_kos, nama, tipe, p.verified case
+  $getDataPembayaran = "select p.id, ak.id as id_anak_kos, nama, tipe, p.verified, case
   when tipe = 0
     then k.harga_kamar_mandi_dalam
     else k.harga_kamar_mandi_luar
@@ -16,7 +16,7 @@ if (!empty($_GET["bulan"]) && !empty($_GET["tahun"])) {
   tgl_transaksi 
   from anak_kos ak
   left join (
-    select id, id_anak_kos, tgl_transaksi, bulan, tahun, verfied 
+    select id, id_anak_kos, tgl_transaksi, bulan, tahun, verified 
     from pembayaran 
     where bulan = $bulan 
     and tahun = $tahun) as p
@@ -43,9 +43,10 @@ tgl_transaksi from anak_kos ak
   where a.id = $id";
 }
 $res = mysqli_query($conn, $getDataPembayaran);
-
+echo mysqli_error($conn);
 $getKosId = "select id from kos where admin_id = $id";
 $kosId = mysqli_query($conn, $getKosId)->fetch_assoc();
+
 
 if (isset($_GET["msg"])) {
   $msg = $_GET["msg"];
