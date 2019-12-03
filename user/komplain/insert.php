@@ -14,7 +14,7 @@ if (isset($_POST["submit"])) {
     $insertKomplain = "INSERT INTO komplain values(NULL, $id, '$judul', '$deskripsi', NOW(), 0)";
     try {
       mysqli_query($conn, $insertKomplain);
-      header("location: /user/komplain/index?msg=insert_ok");
+      header("location: /user/komplain/index.php?msg=insert_ok");
     } catch (\Throwable $th) {
       header("location: /user/komplain/create.php?error=$th");
     }
