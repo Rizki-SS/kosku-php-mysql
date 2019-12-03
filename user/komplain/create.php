@@ -2,7 +2,6 @@
 $dir = $_SERVER["DOCUMENT_ROOT"];
 include($dir . "/config/conn.php");
 require_once($dir . "/user/auth.php");
-$id = $_SESSION["user"]["id"];
 
 if (isset($_GET["error"])) {
   $error = $_GET["error"];
@@ -48,9 +47,6 @@ if (isset($_GET["error"])) {
     ?>
     <form action="/user/komplain/insert.php" method="post">
       <div class="row">
-        <div class="col-lg-6">
-        <input type="hidden" name="id" value="<?= $id?>">
-        </div>
         <div class="col-lg-6">
           <div class="form-group">
             <label for="judul">Judul Komplain</label>

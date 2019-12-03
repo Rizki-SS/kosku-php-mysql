@@ -29,7 +29,7 @@ mysqli_close($conn);
 
   <script>
     $(document).ready(function() {
-      var id = <?= $data["id_anak_kos"] ?>;
+      var id = <?= $data["id_anak_kos"] ?>
       $("#<?= $data["id_anak_kos"] ?>").attr("selected", "selected");
     });
   </script>
@@ -69,6 +69,7 @@ mysqli_close($conn);
     <form action="/admin/pembayaran/update.php" method="post" class="form-group">
       <div class="row">
         <div class="col-lg-6">
+          <div class="form-group">
           <label for="">Nama</label>
           <select class="custom-select" id="inlineFormCustomSelect" name="idanakkos">
             <option value="">Pilih</option>
@@ -78,13 +79,20 @@ mysqli_close($conn);
             <?php }
             ?>
           </select><br><br>
+          </div>
           Pembayaran Untuk :<br />
           <div class="row">
-            <div class="col-sm-6"><label for="bulan">Bulan</label>
+            <div class="col-sm-6">
+              <div class="form-group">
+              <label for="bulan">Bulan</label>
               <input type="text" name="bulan" id="bulan" class="form-control" value="<?= $data["bulan"] ?>" /><br />
+              </div>
             </div>
-            <div class="col-sm-6"><label for="tahun">Tahun</label>
+            <div class="col-sm-6">
+              <div class="form-group">
+              <label for="tahun">Tahun</label>
               <input type="text" name="tahun" id="tahun" class="form-control" value="<?= $data["tahun"] ?>" /><br />
+              </div>
             </div>
             <input type="hidden" name="id" class="form-control" value="<?= $data["id"] ?>" /><br />
           </div>

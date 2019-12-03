@@ -8,10 +8,6 @@ $getData = "SELECT * FROM anak_kos where id=$userId;";
 $data = mysqli_query($conn, $getData)->fetch_assoc();
 mysqli_close($conn);
 
-if (mysqli_error($conn)) {
-  echo mysqli_error($conn);
-}
-
 ?>
 
 <html>
@@ -23,7 +19,7 @@ if (mysqli_error($conn)) {
   <?php include($dir . "/templates/resources.php"); ?>
   <script>
     $(document).ready(function() {
-      var tipe = <?= $_GET["tipe"] + 1 ?>;
+      var tipe = <?= $_GET["tipe"] + 1 ?>
       console.log(tipe);
       $("#<?= $_GET["tipe"] + 1;?>").attr("selected", "selected");
     });
@@ -79,7 +75,9 @@ if (mysqli_error($conn)) {
             <label for="lembaga">Lembaga</label>
             <input type="text" name="lembaga" id="lembaga" class="form-control" value="<?= $data["lembaga"] ?>" />
           </div>
+          <div class="form-group">
           <input type="text" name="id" value="<?= $data["id"] ?>" style="display:none;">
+          </div>
         </div>
         <div class="col-lg-6">
           <div class="form-group">

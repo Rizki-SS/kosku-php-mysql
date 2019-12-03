@@ -70,13 +70,17 @@
         ?>
         <h2 class="h2" style="font-weight: bold;">Login</h2>
         <br /><br />
-        <form action="/config/check.php" class="form-group" method="POST">
+        <form action="/config/check.php" method="POST">
           <div class="row">
             <div class="offset-lg-2 col-lg-8">
-              <label for="username">Username</label>
-              <input type="name" name="username" class="form-control" id="username" /><br />
-              <label for="password">Password</label>
-              <input type="password" name="password" class="form-control" id="password" />
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="name" name="username" class="form-control" id="username" /><br />
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-control" id="password" />
+              </div>
               <br />
               <input type="submit" name="submit" value="Login" class="btn btn-dark btn-raised" />
             </div>
