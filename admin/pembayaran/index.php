@@ -5,7 +5,7 @@ require_once($dir . "/admin/auth.php");
 session_start();
 $id = $_SESSION["admin"]["id"];
 session_abort();
-if (isset($_GET["bulan"]) && isset($_GET["tahun"])) {
+if (!empty($_GET["bulan"]) && !empty($_GET["tahun"])) {
   $bulan = $_GET["bulan"];
   $tahun = $_GET["tahun"];
   $getDataPembayaran = "select p.id, ak.id as id_anak_kos, nama, tipe, p.verified case
