@@ -52,7 +52,7 @@ if (isset($_GET["msg"])) {
   $msg = $_GET["msg"];
   if ($msg == "insert_ok") {
     $msg = "Data Berhasil Disimpan";
-  }else if($msg == "verify_ok"){
+  } else if ($msg == "verify_ok") {
     $msg = "Data Berhasil Diverifikasi";
   }
 }
@@ -143,7 +143,7 @@ mysqli_close($conn);
               <?php
                 if (empty($users["tgl_transaksi"])) { ?>
                 <a href="/admin/pembayaran/create.php?id=<?= $users["id_anak_kos"] ?>" class="btn btn-success btn-raised"><i class="fa fa-plus"></i> Tambah</a>
-              <?php } else if($users["verified"] == 1) { ?>
+              <?php } else if ($users["verified"] == 1) { ?>
                 <button data-id="<?= $users["id"] ?>" data-toggle="modal" data-target="#verifyModal" class="btn btn-primary verify">
                   Verifikasi
                 </button>
@@ -170,9 +170,9 @@ mysqli_close($conn);
         </div>
         <div class="modal-footer">
           <form action="/admin/pembayaran/verify.php" method="get">
-            <input type="text" name="verify_id" id="delete_id">
+            <input type="hidden" name="verify_id" id="delete_id">
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Ga Jadi Deh..</button>
-            <button type="submit" class="btn btn-danger" id="hapusAja">Ya</button>
+            <button type="submit" class="btn btn-success btn-raised" id="hapusAja">Ya</button>
           </form>
         </div>
       </div>
@@ -180,7 +180,7 @@ mysqli_close($conn);
   </div>
 </body>
 <script>
-  $(document).ready(function () {
+  $(document).ready(function() {
     $('.verify').click(function() {
       var ID = $(this).data('id');
       console.log(ID);
