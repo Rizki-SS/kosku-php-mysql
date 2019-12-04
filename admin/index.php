@@ -29,6 +29,42 @@ if (isset($_GET["msg"])) {
       margin-bottom: 8px;
     }
   </style>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <?php
+    $getKelompokAsal = "select ak.asal, count(ak.id) as jumlah from anak_kos ak
+    inner join kos k on ak.id_kos = k.id
+    inner join admin a on k.admin_id = a.id
+    where a.id = $admin[id]
+    group by asal";
+
+    $res = mysqli_query($conn, $getKelompokAsal);
+  ?>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Asal', 'Jumlah Kota'],
+          <?php 
+          while($row = mysqli_fetch_assoc($res)){ ?>
+            ['<?= $row["asal"]?>', <?= $row["jumlah"]?>],
+          <?php }
+          ?>
+        ]);
+
+        var options = {
+          title: 'Data Jumlah Anak Kos Berdasarkan Kota',
+          pieHole: 0.4
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
 </head>
 
 <body>
@@ -82,8 +118,6 @@ if (isset($_GET["msg"])) {
         where a.id = $admin[id] and p.bulan = MONTH(NOW()) and p.tahun = YEAR(NOW())";
 
         $data = mysqli_query($conn, $getDataPembayaran)->fetch_assoc();
-
-        mysqli_close($conn);
         ?>
         <div class="card">
           <div class="card-body">
@@ -92,16 +126,37 @@ if (isset($_GET["msg"])) {
           </div>
         </div>
       </div>
+
+      <?php 
+      $getJumlahKomplain = "select count(*) as jumlahkomplain
+      from komplain km
+      inner join anak_kos ak on km.id_anak_kos = ak.id
+      inner join kos k on ak.id_kos = k.id
+      inner join admin a on k.admin_id = a.id
+      where a.id = $admin[id] and km.selesai = 0";
+
+      $res = mysqli_query($conn, $getJumlahKomplain)->fetch_assoc();
+      ?>
       <div class="col-lg-4">
         <div class="card">
           <div class="card-body">
-            <span>Komplain</span>
-            <h1><b>0</b></h1>
+            <span>Komplain yang belum diselesaikan</span>
+            <h1><b><?= $res["jumlahkomplain"]?></b></h1>
           </div>
         </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-6">
+        <div id="piechart" style="width: 100%; height: 300px;"></div>
       </div>
     </div>
   </div>
 </body>
 
 </html>
+
+<?php 
+mysqli_close($conn);
+?>

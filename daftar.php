@@ -14,7 +14,7 @@
   if ($error == "1") {
     $msg = "Data sudah ada. Silahkan Login.";
   } else if ($error == "2") {
-    $msg = "Data Tidak Valid";
+    $msg = "Ada isian yang kosong. Coba cek data anda.";
   } else if ($error == "1452") {
     $msg = "Kos Tidak Ada";
   } else {
@@ -37,19 +37,31 @@
     .login {
       padding-top: 50px;
     }
+
+    .nav-item{
+      width: 50%;
+      text-align: center;
+    }
   </style>
+  <title>
+    Kosku - Daftar
+  </title>
   <script>
     $(document).ready(function() {
       $("#tabs-2").hide();
-      $("#tabs-1").hide();
+      $("#tabs-1").show();
 
       $("#pemilikKos").click(function() {
         $("#tabs-2").hide();
         $("#tabs-1").show();
+        $(this).addClass("active");
+        $("#anakKos").removeClass("active");
       });
       $("#anakKos").click(function() {
         $("#tabs-1").hide();
         $("#tabs-2").show();
+        $(this).addClass("active");
+        $("#pemilikKos").removeClass("active");
       });
     });
   </script>
@@ -88,28 +100,37 @@
         }
         ?>
         <div class="text-center">
-          <button id="pemilikKos" class="btn btn-primary">Daftar Sebagai Pemilik Kos</button>
-          <button id="anakKos" class="btn btn-primary">Daftar Sebagai Anak Kos</button>
+          
         </div>
-        <div class="row" id="tabs-1" style="display:none">
-          <div class="offset-sm-2 col-sm-8">
-            <form action="/config/register.php" method="POST">
+        <div class="row" >
+          <div class="offset-sm-1 col-sm-10" >
+          <ul class="nav nav-tabs bg-primary justify-content-center" style="width: 100%">
+            <li class="nav-item">
+              <a class="nav-link active" id="pemilikKos">Daftar sebagai Pemilik Kos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="anakKos">Daftar Sebagai Anak Kos</a>
+            </li>
+          </ul>
+            <form action="/config/register.php" method="POST" id="tabs-1" style="display:none">
               <div>
-                <label for="name">Nama</label>
-                <input type="text" name="name" class="form-control" id="name" placeholder="Nama" /><br />
-                <label for="username">Username</label>
-                <input type="text" name="username" class="form-control" id="username" placeholder="Username" /><br />
-                <label for="password">Password</label>
-                <input type="password" name="password" class="form-control" id="password" placeholder="Password" />
+                <div class="form-group">
+                  <label for="#admin_name">Nama</label>
+                  <input type="text" name="name" class="form-control" id="admin_name" placeholder="Nama" />
+                </div>
+                <div class="form-group">
+                  <label for="#admin_username">Username</label>
+                  <input type="text" name="username" class="form-control" id="admin_username" placeholder="Username" />
+                </div>
+                <div class="form-group">
+                  <label for="#admin_password">Password</label>
+                  <input type="password" name="password" class="form-control" id="admin_password" placeholder="Password" />
+                </div>
               </div>
-              <input type="hidden" name="tipeUser" id="tipeUser" value="pemilikKos">
-              <input type="submit" name="daftar" value="Daftar" class="btn btn-dark" id="tombolSubmit" />
+              <input type="hidden" name="tipeUser" id="admin" value="pemilikKos">
+              <input type="submit" name="daftar" value="Daftar" class="btn btn-dark" id="submitAdmin" />
             </form>
-          </div>
-        </div>
-        <div class="row" id="tabs-2" style="display:none">
-          <div class="offset-sm-2 col-sm-8">
-            <form action="/config/register.php" method="POST">
+            <form action="/config/register.php" method="POST" id="tabs-2" style="display:none">
               <div class="form-group">
                 <label for="name">Nama</label>
                 <input type="text" name="name" class="form-control" id="name" placeholder="Nama" />
@@ -150,8 +171,8 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" class="form-control" id="password" placeholder="password" />
               </div>
-              <input type="hidden" name="tipeUser" id="tipeUser" value="anakKos"> <br>
-              <input type="submit" name="daftar" value="Daftar" class="btn btn-dark" id="tombolSubmit" />
+              <input type="hidden" name="tipeUser" id="user" value="anakKos"> <br>
+              <input type="submit" name="daftar" value="Daftar" class="btn btn-dark" id="submitUser" />
           </div>
           </form>
 

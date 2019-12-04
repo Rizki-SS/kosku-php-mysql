@@ -56,24 +56,32 @@ if (isset($_POST["daftar"])) {
     ) {
       header("location: /daftar.php?error=2");
     } else {
-      $findUser = "SELECT * FROM anak_kos where username='$username'";
-      $dupUser = mysqli_query($conn, $findUser);
-      $dupUser = $dupUser->fetch_assoc();
-      if (!empty($dupUser)) {
+      $findAdmin = "SELECT * FROM admin WHERE username='$username';";
+      $res = mysqli_query($conn, $findAdmin);
+      $data = mysqli_num_rows($res);
+      if (!empty($data)) {
+        echo $data;
         header("location: /daftar.php?error=1");
-      } else {
-        $tipe = $tipe - 1;
-
-        $insert = "INSERT INTO anak_kos values(
-          NULL, '$name', '$asal', '$hp', $idKos, $tipe, 
-          '$status', '$lembaga', '$username', '$password'
-        );";
-        mysqli_query($conn, $insert);
-
-        if (mysqli_error($conn)) {
-          header("location: /daftar.php?error=" . mysqli_errno($conn));
+      }else{
+        $findUser = "SELECT * FROM anak_kos where username='$username'";
+        $dupUser = mysqli_query($conn, $findUser);
+        $dupUser = $dupUser->fetch_assoc();
+        if (!empty($dupUser)) {
+          header("location: /daftar.php?error=1");
         } else {
-          header("location: /login.php");
+          $tipe = $tipe - 1;
+  
+          $insert = "INSERT INTO anak_kos values(
+            NULL, '$name', '$asal', '$hp', $idKos, $tipe, 
+            '$status', '$lembaga', '$username', '$password'
+          );";
+          mysqli_query($conn, $insert);
+  
+          if (mysqli_error($conn)) {
+            header("location: /daftar.php?error=" . mysqli_errno($conn));
+          } else {
+            header("location: /login.php");
+          }
         }
       }
     }
